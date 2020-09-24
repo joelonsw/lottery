@@ -1,0 +1,15 @@
+---------------게시자가 올린 정보 보여주기--------------- <br>
+나눠드립니다! (Share) <br>
+게시자 : 롯데제왕 <br>
+위치 : 유니스트 <br>
+품목 : 도넛 <br>
+남은수량 : 100개 <br>
+유효기간 : 16:00까지 <br>
+---------------신청자가 얼마나 어떻게 요구할지 적어내기--------------- <br>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="text" placeholder="지점">
+    <input type="text" placeholder="품목">
+    <input type="text" placeholder="얼마나 가져가고 싶나요?">
+    <input type="submit" value="확인">
+</form>
