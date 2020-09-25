@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="./writing.css">
+</head>
+
+<body>
+    <h3>글쓰기</h3>
+
+    <script type="text/javascript">
+        function amount_change(selectedOption) {
+            var text_bar = document.all("amount")
+
+            if (selectedOption == null) {
+                text_bar.disabled = true;
+                text_bar.value = "";
+            }
+            else if (selectedOption == "direct") {
+                text_bar.disabled = false;
+                text_bar.value = "";
+                text_bar.focus();
+            }
+            else {
+                text_bar.disabled = true;
+                text_bar.value = selectedOption;
+            }
+        }
+    </script>
+
+    <form action="./post.html" method="POST" name="writing">
+        <div class="writing_form">
+            <div class="share_request">
+                <select name="share_request_select">
+                    <option value="">카테고리 선택</option>
+                    <option value="share">Share</option>
+                    <option value="request">Request</option>
+                </select>
+            </div>
+
+            <div class="branch-office">
+                <span>
+                    지점 :
+                </span>
+                <select name="branch_office_select">
+                    <option value="default" selected="selected">부천상동점</option>
+                    <option value="10001">부천중동점</option>
+                    <option value="10002">지발돈점</option>
+                </select>
+            </div>
+
+            <div class="menu">
+                <span>
+                    품목 :
+                </span>
+                <select name="menu_select">
+                    <option value="">품목선택</option>
+                    <option value="20001">오리지널 글레이즈드</option>
+                    <option value="20002">파우더 스트로베리 필드</option>
+                    <option value="20003">슈가 코티드</option>
+                    <option value="20004">크런치 밀크 초콜릿 링</option>
+                </select>
+            </div>
+
+            <div class="amount">
+                <span>
+                    수량 :
+                </span><input type="number" name="amount" min="1" disabled>
+                <select name="amount_select" onchange="amount_change(amount_select.options[this.selectedIndex].value)">
+                    <option value="">수량선택</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="200">200</option>
+                    <option value="250">250</option>
+                    <option value="300">300</option>
+                    <option value="direct">직접입력</option>
+                </select>
+            </div>
+
+            <div class="time_limit">
+                <span>
+                    게시물 유효기간 :
+                </span>
+                <input type="time" name="time_line" value="11:11" min="08:00" max="21:00">
+            </div>
+
+            <script>
+                var dt = new Date(Date.now()),
+                    h = dt.getHours(),
+                    m = dt.getMinutes();
+                if (h < 10) h = "0" + h;
+                if (m < 10) m = "0" + m;
+                var currentTime = h + ":" + m;
+                var time_bar = document.all("time_line");
+                time_bar.value = currentTime;
+            </script>
+
+            <input type="submit" value="작성">
+        </div>
+    </form>
+</body>
+
+</html>

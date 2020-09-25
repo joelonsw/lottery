@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.writing_form{
+    width: 500px;
+    margin: 10px 0 0 50px;
+    color: #444444;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-top: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+}
+
+h3{
+    margin: 10px 0 0 50px;
+    padding-top: 5px;
+    padding-bottom: 10px; 
+}
+
+span input{
+    float : left;
+    width : 90px;
+    text-align : right;
+    padding : 10px;
+}
