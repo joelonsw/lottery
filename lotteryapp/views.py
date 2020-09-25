@@ -13,7 +13,7 @@ def share(request):
     return render(request, "main.html", {'examples' : examples} )
     
 def request(request):
-    #model에서 share에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
+    #model에서 request에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
     examples = ["request1", "request2"]
     return render(request, "main.html", {'examples' : examples})
 
@@ -51,6 +51,7 @@ def write_share(request):
 def write_request(request):
     #form 태그에 입력값이 들어오면 모델에서 처리해준후, 메인페이지 리다이렉트
     if request.POST:
+        #DB생성하는 과정
         return redirect(main)
     return render(request, "write_request.html")
 
