@@ -1,13 +1,291 @@
-LOTTERY
-<a href="{% url 'mypage' %}">마이페이지</a>
+{% load static %}
+<!-- <a href="{% url 'mypage' %}">마이페이지</a>
 <br><br>
 <a href="{% url 'share' %}">나눠드립니다 (Share) </a>
 <br><br>
 <a href="{% url 'request' %}">부족합니다 (Request) </a>
 <br><br>
 {% for example in examples %}
-    <!-- 넘겨줄때는 오브젝트 id 랑 같이넘겨줘야함! -->
-    <a href="{% url 'detail' %}"> * {{example}} *  </a>
-{% endfor %}
-<br><br>
-<a href="{% url 'write' %}">글쓰기</a>
+넘겨줄때는 오브젝트 id 랑 같이넘겨줘야함!
+<a href="{% url 'detail' %}"> * {{example}} * </a>
+{% endfor %} -->
+<!-- <br><br>
+<a href="{% url 'write' %}">글쓰기</a> -->
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>LOTTERY</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'image/lotte.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img  src="{% static 'image/lottery.png' %}" style="width:250px; padding:1vw" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="{% url 'share' %}">Share</a></li>
+                                    <li><a href="{% url 'request' %}">Request</a></li>
+                                    <li><a href="{% url 'write' %}">Write</a></li>
+                                    <!-- <li><a href="about.html">about</a></li>
+                                    <li class="hot"><a href="#">Latest</a>
+                                        <ul class="submenu">
+                                            <li><a href="shop.html"> Product list</a></li>
+                                            <li><a href="{% url 'detail' %}"> Product Details</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog.html">Blog</a>
+                                        <ul class="submenu">
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="blog-details.html">Blog Details</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="submenu">
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="elements.html">Element</a></li>
+                                            <li><a href="confirmation.html">Confirmation</a></li>
+                                            <li><a href="checkout.html">Product Checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li> -->
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? Popular Items Start -->
+        <div class="popular-items section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class="section-tittle mb-70 text-center">
+                            <h2>Share</h2>
+                            <p>여러분의 남은 재고를 여기서 해결하세요!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular1.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>제가 가져갈게요!</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular2.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular3.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular4.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular5.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="{% static 'image/gallery/popular6.png' %}" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="{% url 'detail' %}">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a href="catagori.html" class="btn view-btn1">View More Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copy-right">
+            <p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                    target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+
+        <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/slick.min.js' %}"></script>
+
+        <!-- One Page, Animated-HeadLin -->
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <script src="{% static 'js/animated.headline.js' %}"></script>
+        <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+
+        <!-- Scrollup, nice-select, sticky -->
+        <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'js/jquery.sticky.js' %}"></script>
+
+        <!-- contact js -->
+        <script src="{% static 'js/contact.js' %}"></script>
+        <script src="{% static 'js/jquery.form.js' %}"></script>
+        <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'js/mail-script.js' %}"></script>
+        <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+
+        <!-- Jquery Plugins, main Jquery -->
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
