@@ -10,12 +10,12 @@ def main(request):
 def share(request):
     #model에서 share에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
     examples = ["share1", "share2"]
-    return render(request, "main.html", {'examples' : examples} )
+    return render(request, "share.html", {'examples' : examples} )
     
 def request(request):
     #model에서 request에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
     examples = ["request1", "request2"]
-    return render(request, "main.html", {'examples' : examples})
+    return render(request, "request.html", {'examples' : examples})
 
 def detail(request):
     #객채의 id를 인자로 넘겨받아야 할 것.

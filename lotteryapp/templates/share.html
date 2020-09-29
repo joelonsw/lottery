@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOTTERY</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/23831bcd64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/card.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/carousel.css' %}" />
+    <script src="{% static 'js/main_js.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}" />
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img class="lottery_logo" src="{% static 'image/small_lotte.png' %}" alt="">
+            <a href="{% url 'main' %}">LOTTERY</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="{% url 'share' %}">Share</a></li>
+            <li><a href="{% url 'request' %}">Request</a></li>
+            <li><a href="">About</a></li>
+        </ul>
+        <ul class="navbar__mypage">
+            <li><a href="{% url 'mypage' %}"><i class="fas fa-user"></i></a></li>
+        </ul>
+
+        <a href="#" class="navbar__toggle">
+            <i class="fas fa-bars" id="hamburger"></i>
+        </a>
+    </nav>
+    <div>
+        <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100vw;">
+    </div>
+
+    <div class="courses-container">
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/LOTUS.png' %}" alt="Denim Jeans" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>00:50:12</h5>
+                    </span>
+                </div>
+                <h6>로터스</h6>
+                <h6>유니스트 지점</h6>
+                <h2>100개 남음</h2>
+                <a href="{% url 'detail' %}"><button class="btn">제가 가져갈게요</button></a>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/CHOCOHOLIC.png' %}" alt="Denim Jeans" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>01:56:12</h5>
+                    </span>
+                </div>
+                <h6>초코홀릭</h6>
+                <h6>구영리 지점</h6>
+                <h2>50개 남음</h2>
+                <a href="{% url 'detail' %}"><button class="btn">제가 가져갈게요</button></a>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/icecream.png' %}" alt="Denim Jeans" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>01:30:22</h5>
+                    </span>
+                </div>
+                <h6>아이스크림</h6>
+                <h6>울산대 지점</h6>
+                <h2>200개 남음</h2>
+                <a href="{% url 'detail' %}"><button class="btn">제가 가져갈게요</button></a>
+            </div>
+        </div>
+    </div>
+
+
+    
+</body>
+
+</html>
