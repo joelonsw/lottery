@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 import lotteryapp.views
-import user.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lotteryapp.views.home, name="home"),
     path('main', lotteryapp.views.main, name="main"),
     path('share', lotteryapp.views.share, name="share"),
     path('request', lotteryapp.views.request, name="request"),
@@ -30,5 +28,5 @@ urlpatterns = [
     path('detail', lotteryapp.views.detail, name="detail"),
     path('share_response', lotteryapp.views.share_response, name="share_response"),
     path('request_response', lotteryapp.views.request_response, name="request_response"),
-    path('mypage', user.views.mypage, name="mypage"),
+    path('', include('user.urls')),
 ]

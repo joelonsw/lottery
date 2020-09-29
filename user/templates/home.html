@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOTTERY 로그인</title>
+</head>
+
+<body>
+    {% if alert %}
+        <script>
+            alert('ID 또는 비밀번호를 잘못 입력하셨습니다.')
+        </script>
+    {% endif %}
+
+    <h1>로그인</h1>
+    <form method="POST" action="{% url 'signin' %}">
+        {% csrf_token %}
+        <div>
+            <p><input type="text" name="username" placeholder="ID"></p>
+            <p><input type="password" name="password" placeholder="password"></p>
+        </div>
+        <div>
+            <button type="submit">로그인</button>
+        </div>
+    </form>
+    <a href="{% url 'signup' %}">아직 회원이 아니신가요?</a>
+</body>
+
+</html>
