@@ -1,0 +1,151 @@
+body ,html{
+    margin: 0;
+    font-family: 'Source Sans Pro';
+}
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
+
+.main{
+    min-height: calc(100vh-68px-235px);
+}
+
+.navbar {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 2.5vw; */
+    background-color: rgb(218, 41, 28);
+    padding: 0px 10vw;
+}
+
+.navbar__logo{
+    display:flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 25px;
+    justify-content: space-between;
+}
+
+.navbar__logo img {
+    width: 40px;
+}
+
+.navbar__menu {
+    display:flex;
+    list-style: none;
+    position: relative;
+    padding-right: 7vw;
+    padding-left: 0;
+}
+
+.navbar__menu a{
+    font-size:18px;
+}
+
+.navbar__menu li {
+    /* 패딩은 안에서 마우스 올렸을때 범위 넓어 */
+    padding: 8px 20px;
+}
+
+.navbar__menu li:hover{
+    /* R135 G118 B105 */
+    background-color: lightgrey;
+    border-radius: 4px;
+}
+
+.navbar__mypage { 
+    list-style: none;
+    color:white;
+    display:flex;
+    padding-left : 0;
+}
+
+.navbar__mypage li {
+    padding: 8px 12px;
+}
+
+.navbar__toggle {
+    position: absolute;
+    display:none;
+    right: 32px;
+    font-size: 24px;
+}
+
+.image_container{
+    width:300vw;
+    transition: transform 0.5s;
+}
+
+.image_inner{
+    width:100vw;
+    float:left;
+    height:70vh;
+}
+
+.image_inner img{
+    width:100%;
+}
+
+#left{
+    width:100px;
+    color: black;
+}
+
+@media screen and (max-width: 768px){
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        height: 68px;
+        padding: 0px 15vw;
+    }
+
+    #hamburger{
+        margin-top:20px;
+        padding-left: 85vw;
+    }
+
+    .navbar__logo{
+        display:flex;
+        align-items: center;
+        padding: 12px 12px;
+        font-size: 25px;
+        justify-content: space-between;
+    }
+
+    .navbar__menu{
+        display:none;
+        flex-direction:column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar__menu li{
+        width:100%;
+        text-align:center;
+    }
+
+    .navbar__mypage{
+        display:none;
+        justify-content: center;
+        width:100%;
+    }
+
+    .navbar__toggle{
+        display:block;
+        height: 68px;
+        width: 100%;
+    }
+
+    .navbar__menu.active,
+    .navbar__mypage.active {
+        display:flex;
+    }
+
+    .navbar.active{
+        height:300px;
+    }
+}
