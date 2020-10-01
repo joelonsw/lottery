@@ -1,13 +1,16 @@
-마이페이지 <br>
--------------------------- <br>
-유저이름: 뭐시깽이 <br>
--------------------------- <br>
-주차별 발주량 <br>
--------------------------- <br>
-예상 판매량 <br>
--------------------------- <br>
-Share 이력 <br>
--------------------------- <br>
-Request 이력 <br>
-<br><br>
-모델에 접근해서 잘 보여줘야할듯합니다~
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    마이페이지 <br> -------------------------- <br> 유저이름: {{user.user_id}} <br> -------------------------- <br> 주차별 발주량 <br> -------------------------- <br> 예상 판매량 <br> -------------------------- <br> Share 이력 <br> -------------------------- <br> Request 이력
+    <br> {% for request in requests %} 게시 날짜 : {{request.dates}} <a href="{% url 'mypage_detail' user.user_id request.pk_num %}">+</a><br> {% endfor %}
+    <br><br> 모델에 접근해서 잘 보여줘야할듯합니다~
+</body>
+
+</html>

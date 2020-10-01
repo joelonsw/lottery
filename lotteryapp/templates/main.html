@@ -1,13 +1,11 @@
 LOTTERY
-<a href="{% url 'mypage' %}">마이페이지</a>
+<a href="{% url 'mypage' 'test' %}">마이페이지</a>
 <br><br>
 <a href="{% url 'share' %}">나눠드립니다 (Share) </a>
 <br><br>
 <a href="{% url 'request' %}">부족합니다 (Request) </a>
-<br><br>
-{% for example in examples %}
-    <!-- 넘겨줄때는 오브젝트 id 랑 같이넘겨줘야함! -->
-    <a href="{% url 'detail' %}"> * {{example}} *  </a>
-{% endfor %}
+<br><br> {% for example in examples %}
+<!-- 넘겨줄때는 오브젝트 id 랑 같이넘겨줘야함! -->
+<a href="{% url 'detail' %}"> * {{example}} *  </a> {% endfor %}
 <br><br>
 <a href="{% url 'write' %}">글쓰기</a>

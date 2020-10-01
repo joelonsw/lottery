@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from user.models import User
 
 # Create your models here.
 
@@ -21,27 +22,42 @@ from django.conf import settings
     이 후 로직이 완성되면 model을 고칠 예정입니다.
 """
 
+"""
+    location => 요청 지점
+    contents => 본문 내용
+    minute   => 만료 시간 (일단 분 단위)
+    item     => 필요한 품목 이름
+    item_num => 필요한 품목 개수
+    dates    => 게시 날짜
+    pk_num   => primary key
+    author   => 게시한 유저의 foreign key
+"""
+
 class DummyRequest(models.Model):
 
-    location    = models.CharField(max_length=100)              # 요청 장소
-    contents    = models.TextField(blank=True)                  # 본문 내용
-    minute      = models.IntegerField(null=True)                # 만료 시간 (일단은 분 단위)
-    item        = models.CharField(max_length=50, blank=True)   # 요청 품목 이름
-    item_num    = models.IntegerField(null=True)                # 요청 품목 개수
-    dates       = models.DateField(auto_now=True)               # 게시 날짜
+    location    = models.CharField(max_length=100)
+    contents    = models.TextField()
+    minute      = models.IntegerField(default=0)
+    item        = models.CharField(max_length=50)
+    item_num    = models.IntegerField(default=0)
+    dates       = models.DateField(auto_now=True)
+    pk_num      = models.AutoField(primary_key=True, auto_created=True)
+    author      = models.ForeignKey("user.User", on_delete=models.CASCADE, default=1, related_name="author")
 
     def __str__ (self):
-        return self.location
+        return str(self.author)
 
 
 class DummyShare(models.Model):
 
-    location    = models.CharField(max_length=100)  # 공유 장소
-    contents    = models.TextField(blank=True)      # 본문 내용
-    minute      = models.IntegerField()             # 만료 시간 (분 단위)
-    item        = models.CharField(max_length=50)   # 공유 품목 이름
-    item_num    = models.IntegerField()             # 요청 품목 개수
-    dates       = models.DateField(auto_now=True)   # 게시 날짜
+    location    = models.CharField(max_length=100)
+    contents    = models.TextField()
+    minute      = models.IntegerField(default=0)
+    item        = models.CharField(max_length=50)
+    item_num    = models.IntegerField(default=0)
+    dates       = models.DateField(auto_now=True)
+    pk_num      = models.AutoField(primary_key=True, auto_created=True, default=1)
+    #author      = models.ForeignKey("user.User", on_delete=models.CASCADE, default=1, related_name="author")
 
     def __str__ (self):
         return self.location

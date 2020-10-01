@@ -30,5 +30,7 @@ urlpatterns = [
     path('detail', lotteryapp.views.detail, name="detail"),
     path('share_response', lotteryapp.views.share_response, name="share_response"),
     path('request_response', lotteryapp.views.request_response, name="request_response"),
-    path('mypage', user.views.mypage, name="mypage"),
+    # My page 관련 추가된 부분.
+    path('mypage/<str:id>/', user.views.mypage, name="mypage"),
+    path('mypage/<str:id>/request/<int:pk>', user.views.mypage_detail, name="mypage_detail"),
 ]

@@ -1,7 +1,15 @@
 from django.db import models
 
 # Create your models here.
-# 안녕하세요 작업을 다했습니다
+
+"""
+    임시로 만든 user model 입니다.
+"""
+
+"""
+    user_id       => 유저 ID
+    user_location => 해당 유저의 지점
+"""
 
 class User(models.Model):
 
