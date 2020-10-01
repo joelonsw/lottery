@@ -8,9 +8,14 @@
 </head>
 
 <body>
-    {% if alert %}
+    {% if alert == 1 %}
         <script>
             alert('ID 또는 비밀번호를 잘못 입력하셨습니다.')
+        </script>
+    {% endif %}
+    {% if alert == 2 %}
+        <script>
+            alert('회원가입이 성공적으로 완료되었습니다!')
         </script>
     {% endif %}
 

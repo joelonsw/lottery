@@ -8,10 +8,37 @@
 </head>
 
 <body>
+    {% if alert == 1 %}
+    <script>
+        alert('비밀번호가 일치하지 않습니다.')
+    </script>
+    {% endif %}
+    {% if alert == 2 %}
+    <script>
+        alert('이미 있는 ID이거나 빈 항목이 있습니다.')
+    </script>
+    {% endif %}
+
     <h1>회원가입 페이지</h1>
-    <form method="POST" action="">
+
+    <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}
-        {{regi_form.as_p}}
+        ID :
+        <input type="text" name="username" placeholder="ID"><br>
+        Password :
+        <input type="password" name="password" placeholder="Password"><br>
+        Password Confirmation :
+        <input type="password" name="password_confirm" placeholder="Password를 다시 입력해주세요."><br>
+        e-mail :
+        <input type="email" name="email" placeholder="e-mail"><br>
+        점주 :
+        <input type="text" name="fullname" placeholder="이름을 입력해주세요"><br>
+        지점 :
+        <select name="location">
+            <option value="부천상동점">부천상동점</option>
+            <option value="부천중동점">부천중동점</option>
+            <option value="스타필드부천점">스타필드부천점</option>
+        </select><br>
         <input type="submit" value="회원가입">
     </form>
 </body>

@@ -1,4 +1,4 @@
-{{user}}님, 안녕하세요! <a href="{% url 'logout' %}">로그아웃</a>
+{{user.profile.fullname}}({{user.profile.location}})님, 안녕하세요! <a href="{% url 'logout' %}">로그아웃</a>
 <h1>LOTTERY</h1>
 <a href="{% url 'mypage' %}">마이페이지</a>
 <br><br>

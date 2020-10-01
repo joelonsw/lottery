@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from .forms import UserForm
 
 # Create your views here.
@@ -12,17 +12,23 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def signup(request):
-    regi_form = UserCreationForm()
     if request.method == "POST":
-        filled_form = UserCreationForm(request.POST)
-        if filled_form.is_valid():
-            filled_form.save()
-            return redirect('main')
-    return render(request, "signup.html", {'regi_form' : regi_form})
+        if request.POST['password'] == request.POST['password_confirm']:
+            filled_form = UserForm(request.POST)
+            if filled_form.is_valid() and request.POST['fullname'] is not None and request.POST['location'] is not None:
+                user = User.objects.create_user(username=request.POST['username'], password = request.POST['password'], email = request.POST['email'])
+                user.profile.fullname = request.POST['fullname']
+                user.profile.location = request.POST['location']
+                user.save()
+                return render(request, "home.html", {'alert' : 2})
+            else:
+                return render(request, "signup.html", {'alert' : 2})
+        else:
+            return render(request, "signup.html", {'alert' : 1})
+    return render(request, "signup.html")
 
 def signin(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username = username, password = password)
@@ -32,7 +38,6 @@ def signin(request):
         else:
             return render(request, 'home.html', {'alert' : 1})
     else:
-        form = UserForm()
         return render(request, 'home.html')
 
 def log_out(request):
