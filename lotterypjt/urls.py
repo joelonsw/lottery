@@ -20,13 +20,17 @@ import lotteryapp.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main', lotteryapp.views.main, name="main"),
+    path('about', lotteryapp.views.about, name="about"),
+
     path('share', lotteryapp.views.share, name="share"),
+    path('share_detail/<int:pk>', lotteryapp.views.share_detail, name="share_response"),
+
     path('request', lotteryapp.views.request, name="request"),
+    path('request_detail/<int:pk>', lotteryapp.views.request_detail, name="request_response"),
+
     path('write', lotteryapp.views.write, name="write"),
     path('write_request', lotteryapp.views.write_request, name="write_request"),
     path('write_share', lotteryapp.views.write_share, name="write_share"),
-    path('detail', lotteryapp.views.detail, name="detail"),
-    path('share_response', lotteryapp.views.share_response, name="share_response"),
-    path('request_response', lotteryapp.views.request_response, name="request_response"),
+
     path('', include('user.urls')),
 ]

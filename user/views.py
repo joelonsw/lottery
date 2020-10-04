@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserForm
 
@@ -7,6 +8,7 @@ from .forms import UserForm
 def home(request):
     return render(request, "home.html")
 
+@login_required
 def mypage(request):
     #model에서 적절한 값들을 해당 user에 알맞게 끌어와서 템플릿태그로 넘겨주기
     return render(request, "mypage.html")
@@ -40,6 +42,7 @@ def signin(request):
     else:
         return render(request, 'home.html')
 
+@login_required
 def log_out(request):
     logout(request)
     return redirect('home')
