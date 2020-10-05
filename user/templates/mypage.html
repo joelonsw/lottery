@@ -1,16 +1,68 @@
-마이페이지 <br>
--------------------------- <br>
-유저이름: {{user.profile.fullname}} <br>
--------------------------- <br>
-지점: {{user.profile.location}} <br>
--------------------------- <br>
-주차별 발주량 <br>
--------------------------- <br>
-예상 판매량 <br>
--------------------------- <br>
-Share 이력 <br>
--------------------------- <br>
-Request 이력 <br>
-<br>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="user_info">
+    <div class="user_dashboard">
+        <div class="user_specific">
+            <img src="{% static 'image/krispy_logo.png' %}" alt="">
+            <h2>{{user.profile.location}}</h2>
+        </div>
+        <div class="vertical_line"></div>
+        <div class="user_status">
+            <div class="user_status_share_info">
+                <h5>Share 횟수</h5>
+                <h2>3</h2>
+            </div>
+            <div class="user_status_request_info">
+                <h5>Request 횟수</h5>
+                <h2>5</h2>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a href="{% url 'main' %}">다시 홈으로</a>
+<div class="history">
+    <div class="history_tab">
+        <div class="history_nav_tab1"><a href="" class="history_nav_link1">Share/Request 이력</a></div>
+        <div class="history_nav_tab2"><a href="" class="history_nav_link2">주차별 발주량</a></div>
+        <!-- <div class="history_nav_tab3"><a href="" class="history_nav_link3">이번주 예상 발주량</a></div> -->
+    </div>
+    <div class="tab_content">
+        <!-- default S/R이력 -->
+        <div class="history_sr">
+            <div class="share">
+                <a href=""> <b> Share 이력 </b></a>
+            </div>
+            <div class="request">
+                <a href="">Request 이력</a>
+            </div>
+        </div>
+
+        <div class="history_sr_detail">
+            <!-- 이거반복 -->
+            <div class="share_history">
+                <div class="share_complete">미완료</div>
+                <div class="share_date">2020.09.28</div>
+                <div class="share_item_num">로터스 100개</div>
+            </div>
+            <div class="share_history">
+                <div class="share_complete">완료</div>
+                <div class="share_date">2020.09.29</div>
+                <div class="share_item_num">로터스 30개</div>
+            </div>
+            <div class="share_history">
+                <div class="share_complete">완료</div>
+                <div class="share_date">2020.09.30</div>
+                <div class="share_item_num">초코홀릭 50개</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br><br>
+<div style="display: flex; align-items: center; justify-content: center; ">
+    <button style="background-color:  rgb(84,88,90); border-radius: 5px; width: 100px; height:30px;"><a href="{% url 'logout' %}">Logout</a></button>
+</div>
+
+{% endblock content %}

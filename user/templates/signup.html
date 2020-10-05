@@ -7,7 +7,7 @@
     <title>LOTTERY 회원가입</title>
 </head>
 
-<body>
+<body style="display: flex; flex-direction: column; align-items: center;" >
     {% if alert == 1 %}
     <script>
         alert('비밀번호가 일치하지 않습니다.')
@@ -35,9 +35,15 @@
         <input type="text" name="fullname" placeholder="이름을 입력해주세요"><br>
         지점 :
         <select name="location">
+            <option value="강남역점">강남역점</option>
+            <option value="대치점">대치점</option>
+            <option value="코엑스점">코엑스점</option>
+            <option value="수서역사점">수서역사점</option>
             <option value="부천상동점">부천상동점</option>
             <option value="부천중동점">부천중동점</option>
             <option value="스타필드부천점">스타필드부천점</option>
+            <option value="유니스트점">유니스트점</option>
+            <option value="구영리점">구영리점</option>
         </select><br>
         <input type="submit" value="회원가입">
     </form>

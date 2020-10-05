@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div>
+    <img src="{% static 'image/request_pic.png' %}" alt="" style="width: 100%;">
+</div>
+
+<div class="courses-container">
+    <div class="course" style="width: 800px;">
+        <div class="course-preview">
+            <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>01:56:12</h5>
+                </span>
+            </div>
+            <h6>초코홀릭</h6>
+            <h6>구영리 지점</h6>
+            <h2>50개 부족</h2>
+            <p>예상보다 조금 부족하게 구웠네요. 남으시면 제가 바로 픽업 갑니다!</p>
+            <p>010-1234-5678</p>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper" style="width: 800px;">
+    <div class="title">
+        <h3>구영리 지점 - 초코홀릭</h3>
+    </div>
+    <div class="form">
+        <form action="" method="POST" onsubmit="return submit_click(false)" id="submit_form">
+            <div class="input_field">
+                <label for="">지원 지점</label>
+                <input type="text" class="input" value="유니스트점" required id="store">
+            </div>
+            <div class="input_field">
+                <label for="">지원할 갯수</label>
+                <input type="number" class="input" min="1" max="50" required id="number">
+            </div>
+            <!-- <div class="input_field">
+                <label for="">희망 방문 시간</label>
+                <input type="time" id="time" class="input" min="" max="22:00:00" required id="time">
+            </div> -->
+            <div class="input_field">
+                <label for="">이메일 주소</label>
+                <input type="email" class="input">
+            </div>
+            <div class="input_field">
+                <label for="">휴대폰 번호</label>
+                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+            </div>
+            <div class="input_field">
+                <label for="">요청 사항</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="input_field">
+                <input type="submit" value="제가 드릴게요" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+<br><br>
+{% endblock content %}

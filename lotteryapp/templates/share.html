@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div>
+        <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
+    </div>
+
+    <div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>00:50:12</h5>
+                    </span>
+                </div>
+                <h6>로터스</h6>
+                <h6>유니스트 지점</h6>
+                <h2>100개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>01:56:12</h5>
+                    </span>
+                </div>
+                <h6>초코홀릭</h6>
+                <h6>구영리 지점</h6>
+                <h2>50개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>01:30:22</h5>
+                    </span>
+                </div>
+                <h6>아이스크림</h6>
+                <h6>울산대 지점</h6>
+                <h2>200개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>00:50:12</h5>
+                    </span>
+                </div>
+                <h6>로터스</h6>
+                <h6>신촌 지점</h6>
+                <h2>30개 남음</h2>
+
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>00:50:12</h5>
+                    </span>
+                </div>
+                <h6>로터스</h6>
+                <h6>유니스트 지점</h6>
+                <h2>100개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course-preview">
+                <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>01:56:12</h5>
+                    </span>
+                </div>
+                <h6>초코홀릭</h6>
+                <h6>구영리 지점</h6>
+                <h2>50개 남음</h2>
+
+                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

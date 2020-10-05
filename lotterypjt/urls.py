@@ -25,8 +25,13 @@ urlpatterns = [
     path('write', lotteryapp.views.write, name="write"),
     path('write_request', lotteryapp.views.write_request, name="write_request"),
     path('write_share', lotteryapp.views.write_share, name="write_share"),
-    path('detail', lotteryapp.views.detail, name="detail"),
-    path('share_response', lotteryapp.views.share_response, name="share_response"),
-    path('request_response', lotteryapp.views.request_response, name="request_response"),
+    #detail과 share_response, request_response를 합쳐 두개로 나눴습니다 1.share_detail 2.request_detail 
+        # path('detail', lotteryapp.views.detail, name="detail"),
+        # path('share_response', lotteryapp.views.share_response, name="share_response"),
+        # path('request_response', lotteryapp.views.request_response, name="request_response"),
+    path('share_detail', lotteryapp.views.share_detail, name="share_detail"),
+    path('request_detail', lotteryapp.views.request_detail, name="request_detail"),
+    #about.html 추가 -> 여기엔 우리 팀정보
+    path('about', lotteryapp.views.about, name="about"),
     path('', include('user.urls')),
 ]

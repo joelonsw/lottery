@@ -1,0 +1,202 @@
+.user_info{
+    /* border: 1px solid black; */
+    /* background-color: lightgrey; */
+    margin-top: 2vw;
+    margin-left:20vw;
+    margin-right:20vw;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0 , 0.2)
+}
+
+.user_info h2, h5{
+    
+    color: rgb(84,88,90);
+}
+
+.user_dashboard{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.user_specific{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20vw;
+}
+
+
+.user_specific img{
+    width:100px;
+    height:100px;
+    border-radius: 70%;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.vertical_line{
+    width:0px;
+    border: 1px solid rgb(84,88,90);
+    margin: 0 10px;
+}
+
+.user_status{
+    width: 20vw;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_status h5{
+    margin-bottom: 0px;
+}
+
+.user_status h2{
+    margin-top: 0.5vw;
+}
+
+.user_status div{
+    margin-right: 3vw;
+}
+
+.history{
+    display:flex;
+    flex-direction: column;
+
+}
+
+.history a{
+    color:  rgb(84,88,90);
+}
+
+.history_tab{
+    display:flex;
+    margin: 3vw 20vw 0vw;
+}
+
+/* 여기서 어떤 이력을 볼지 선택하기 */
+.history_nav_tab1{
+    margin-right:0.3vw;
+    background-color:  rgb(84,88,90);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding:0.5vw;
+}
+
+.history_nav_tab1 a{
+    color:white;
+}
+
+.history_nav_tab2{
+    margin-right:0.3vw;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding:0.5vw;
+}
+
+.history_nav_tab2 a{
+    color: rgb(84,88,90);
+}
+
+.history_nav_tab2 a:hover{
+    font-weight: bold;
+}
+.history_nav_tab3 a:hover{
+    font-weight: bold;
+}
+
+
+
+.history_nav_tab3{
+    margin-right:0.3vw;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding:0.5vw;
+}
+
+.history_nav_tab3 a{
+    color: rgb(84,88,90);
+}
+
+.tab_content{
+    margin-left: 20vw;
+    margin-right: 20vw;
+    height: 27vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0 , 0.2)
+}
+
+.history_sr{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 11px 110px;
+    border-bottom: 1px solid  rgb(84,88,90);
+}
+
+.share_history{
+    display:flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.share_history div{
+    width: 100px;
+}
+
+@media screen and (max-width: 1300px){
+
+    .user_specific img{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .user_specific{
+        width:100%;
+        justify-content: center;
+    }
+
+    .user_dashboard{
+        flex-direction: column;
+    }
+    .vertical_line{
+        display:none;
+    }
+
+    .user_status{
+        width:100%;
+    }
+
+    .user_status *{
+        margin:1px;
+    }
+
+    .history{
+        margin-top:15px;
+        min-height: calc(100vh - 68px - 400px);
+    }
+
+    .history_sr div{
+        padding-right: 15px;
+        padding-left:15px;
+    }
+
+    .history_tab div *{
+        font-size:12px;
+    }
+
+    .tab_content div *{
+        font-size:12px;
+    }
+
+    .tab_content{
+        height: 30vh;
+    }
+}

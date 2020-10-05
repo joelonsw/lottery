@@ -1,0 +1,10 @@
+@media screen and (max-width: 768px){
+    .wrapper{
+        width: 75vw !important;
+    }
+
+    .wrapper .form .input_field .input,
+    .wrapper .form .input_field .textarea{
+        width: 92%;
+    }
+}

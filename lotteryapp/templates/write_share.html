@@ -1,10 +1,57 @@
-나눠드릴게요! (share)
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="write_picture">
+    <img src="{% static 'image/write_pic.png' %}" alt="" style="width:100%">
+</div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="text" placeholder="지점">
-    <input type="text" placeholder="품목">
-    <input type="text" placeholder="수량이 얼마나 남았는지">
-    <input type="text" placeholder="언제까지 공고 올릴거임?">
-    <input type="submit" value="확인">
-</form>
+<div class="wrapper">
+    <div class="title">
+        <h2>Share 요청</h2>
+    </div>
+    <div class="form">
+        <form action="" method="POST" id="submit_form" onsubmit=" return submit_click(true)">
+            {% csrf_token %}
+            <div class="input_field">
+                <label for="">요청 지점</label>
+                <input type="text" class="input" value="유니스트점" id="store" required>
+            </div>
+            <div class="input_field">
+                <label for="">나눠줄 품목</label>
+                <div class="custom_select">
+                    <select id="item" required>
+                        <option value="">선택</option>
+                        <option value="lotus">로터스</option>
+                        <option value="icecream">아이스크림</option>
+                        <option value="chocoholic">초코홀릭</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input_field">
+                <label for="">나눠줄 갯수</label>
+                <input type="number" class="input" id="donut_number" required>
+            </div>
+            <div class="input_field">
+                <label for="">요청 만료 시간</label>
+                <input type="time" id="time" class="input" min="" max="22:00:00" required>
+            </div>
+            <div class="input_field">
+                <label for="">이메일 주소</label>
+                <input type="email" class="input">
+            </div>
+            <div class="input_field">
+                <label for="">휴대폰 번호</label>
+                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+            </div>
+            <div class="input_field">
+                <label for="">요청 사항</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="input_field">
+                <input type="submit" value="요청하기" class="btn">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

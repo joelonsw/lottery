@@ -1,14 +1,117 @@
-{{user.profile.fullname}}({{user.profile.location}})님, 안녕하세요! <a href="{% url 'logout' %}">로그아웃</a>
-<h1>LOTTERY</h1>
-<a href="{% url 'mypage' %}">마이페이지</a>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main">
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <img src="{% static 'image/main1.png' %}" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="{% static 'image/main2.png' %}" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="{% static 'image/main3.png' %}" style="width:100%">
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+
+    <!-- The dots/circles -->
+    <!-- <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div> -->
+</div>
+
+<div style="margin-left:10vw;">
+    <h1>가장 급한 Share</h1>
+</div>
+<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+    <div class="course">
+        <div class="course-preview">
+            <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>00:50:12</h5>
+                </span>
+            </div>
+            <h6>로터스</h6>
+            <h6>유니스트 지점</h6>
+            <h2>100개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-preview">
+            <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>01:56:12</h5>
+                </span>
+            </div>
+            <h6>초코홀릭</h6>
+            <h6>구영리 지점</h6>
+            <h2>50개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+        </div>
+    </div>
+</div>
+
 <br><br>
-<a href="{% url 'share' %}">나눠드립니다 (Share) </a>
-<br><br>
-<a href="{% url 'request' %}">부족합니다 (Request) </a>
-<br><br>
-{% for example in examples %}
-    <!-- 넘겨줄때는 오브젝트 id 랑 같이넘겨줘야함! -->
-    <a href="{% url 'detail' %}"> * {{example}} *  </a>
-{% endfor %}
-<br><br>
-<a href="{% url 'write' %}">글쓰기</a>
+<div style="margin-left:10vw;">
+    <h1>가장 급한 Request</h1>
+</div>
+<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+    <div class="course">
+        <div class="course-preview">
+            <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>00:50:12</h5>
+                </span>
+            </div>
+            <h6>로터스</h6>
+            <h6>유니스트 지점</h6>
+            <h2>100개 부족</h2>
+            <button class="btn"><a href="{% url 'request_detail' %}">제가 드릴게요</a></button>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-preview">
+            <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>01:56:12</h5>
+                </span>
+            </div>
+            <h6>초코홀릭</h6>
+            <h6>구영리 지점</h6>
+            <h2>50개 부족</h2>
+            <button class="btn"><a href="{% url 'request_detail' %}">제가 드릴게요</a></button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
