@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from lotteryapp.models import *
 
 # Create your views here.
+
+@login_required
 def main(request):
     return render(request, "main.html")
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
+@login_required
 def share(request):
     #model에서 share에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
     examples = ["share1", "share2"]
     return render(request, "share.html", {'examples' : examples} )
-    
+
+@login_required    
 def request(request):
     #model에서 request에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
     examples = ["request1", "request2"]
@@ -37,27 +43,58 @@ def request(request):
     #         #DB update
     #         return redirect(main)    
     #     return render(request, "request_response.html")
+@login_required
 def share_detail(request):
     return render(request, "share_detail.html")
 
+@login_required
 def request_detail(request):
     return render(request, "request_detail.html")
 
+
+# 끝
+@login_required
 def write(request):
     return render(request, "write.html")
 
+# POST인 경우 model instance 만들고 save.
+# current의 경우 request.user가 현재 로그인 중인 유저를 가리키는 것 같음
+# ItemShare와 ItemRequest가 foreign key를 Profile로 받기 때문에 pk로 서치해서 사용함.
+@login_required
 def write_share(request):
-    #form 태그에 입력값이 들어오면 모델에서 처리해준후, 메인페이지 리다이렉트
     if request.POST:
+        current_user = Profile.objects.get(user=request.user.pk)
+        share_post = ItemShare(location=request.POST['location'],
+                                item=request.POST['item'],
+                                item_num=request.POST['item_num'],
+                                limit_time=request.POST['limit_time'],
+                                email=request.POST['email'],
+                                phone=request.POST['phone'],
+                                contents=request.POST['contents'],
+                                author=current_user,
+                                remain=request.POST['item_num'])
+        share_post.save()
         return redirect(main)
     return render(request, "write_share.html")
 
+@login_required
 def write_request(request):
-    #form 태그에 입력값이 들어오면 모델에서 처리해준후, 메인페이지 리다이렉트
     if request.POST:
-        #DB생성하는 과정
+        current_user = Profile.objects.get(user=request.user.pk)
+        request_post = ItemRequest(location=request.POST['location'],
+                                   item=request.POST['item'],
+                                   item_num=request.POST['item_num'],
+                                   limit_time=request.POST['limit_time'],
+                                   email=request.POST['email'],
+                                   phone=request.POST['phone'],
+                                   contents=request.POST['contents'],
+                                   author=current_user,
+                                   remain=request.POST['item_num'])
+        request_post.save()
         return redirect(main)
     return render(request, "write_request.html")
 
+# 끝
+@login_required
 def about(request):
     return render(request, "about.html")
