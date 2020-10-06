@@ -45,16 +45,10 @@ class ItemRequest(models.Model):
     author      = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
 
     remain      = models.IntegerField(default=0)
-    outdate     = False
+    outdate     = models.BooleanField(default=False)
 
     def __str__ (self):
-        return str(self.author)
-
-    def decrease (self, num):
-        self.remain -= num
-
-    def make_outdate (self):
-        current = datetime.now()
+        return str(self.dates)
 
 
 class ItemShare(models.Model):
@@ -68,14 +62,14 @@ class ItemShare(models.Model):
     contents    = models.TextField(max_length=1000)
     
     dates       = models.DateTimeField(auto_now=True)
-    pk_num      = models.AutoField(primary_key=True, auto_created=True, default=1)
+    pk_num      = models.AutoField(primary_key=True, auto_created=True)
     author      = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
 
     remain      = models.IntegerField(default=0)
-    outdate     = False
+    outdate     = models.BooleanField(default=False)
 
     def __str__ (self):
-        return str(self.author)
+        return str(self.dates)
 
 
 """
@@ -100,7 +94,7 @@ class RequestAccept(models.Model):
     request_contents = models.TextField(max_length=1000, blank=True)
 
     target           = models.ForeignKey("ItemRequest", on_delete=models.CASCADE)
-    pk_num           = models.AutoField(primary_key=True, auto_created=True, default=1)
+    pk_num           = models.AutoField(primary_key=True, auto_created=True)
     volunteer        = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
     dates            = models.DateTimeField(auto_now=True)
 
@@ -117,7 +111,7 @@ class ShareAccept(models.Model):
     share_contents   = models.TextField(max_length=1000, blank=True)
 
     target           = models.ForeignKey("ItemShare", on_delete=models.CASCADE)
-    pk_num           = models.AutoField(primary_key=True, auto_created=True, default=1)
+    pk_num           = models.AutoField(primary_key=True, auto_created=True)
     volunteer        = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
     dates            = models.DateTimeField(auto_now=True)
 

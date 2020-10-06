@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from lotteryapp.models import *
+import lotteryapp.utils
 
 # Create your views here.
 
@@ -9,17 +10,20 @@ def main(request):
     return render(request, "main.html")
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
+
+# outdate 플래그가 활성화 되지 않은 share/request를 필터링 합니다.
+# 그 후, 게시 날짜와 시간이 빠른 순서대로 정렬하여 template으로 전송합니다.
 @login_required
 def share(request):
-    #model에서 share에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
-    examples = ["share1", "share2"]
-    return render(request, "share.html", {'examples' : examples} )
+    target_share_list = ItemShare.objects.filter(outdate=False)
+    target_share_list = sorted(target_share_list, key=lambda target: target.dates)
+    return render(request, "share.html", {'shares' : target_share_list})
 
-@login_required    
+@login_required
 def request(request):
-    #model에서 request에 해당하는 친구들 찾아서 템플릿 태그로 전달할 수 있게 준비!
-    examples = ["request1", "request2"]
-    return render(request, "request.html", {'examples' : examples})
+    target_request_list = ItemRequest.objects.filter(outdate=False)
+    target_request_list = sorted(target_request_list, key=lambda target: target.dates)
+    return render(request, "request.html", {'requests' : target_request_list})
 
 ##아래 주석처리한 로직을 합쳐 share_detail, request_detail에서 구현해주세요! @ 영규님
 ##detail 끌어오가나 할떄 인자로 객체 id 파라미터로 끌고 다니셔야합니다!
