@@ -2,12 +2,42 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from lotteryapp.models import *
 import lotteryapp.utils
-
+from datetime import datetime
 # Create your views here.
 
 @login_required
-def main(request):
-    return render(request, "main.html")
+def main(request): 
+    target_share_list = ItemShare.objects.filter(outdate=False)
+    target_request_list = ItemRequest.objects.filter(outdate=False)
+    urg_Request = []
+    urg_Share = []
+    urgent_items = []
+
+    if len(target_share_list) > 0 and len(target_request_list) > 0:
+        #급한 Request 선별 1. 가장 시간이 적게 남은 Request.
+        target_request_list = sorted(target_request_list, key=lambda target: target.dates)
+        urg_Request.append(target_request_list[0])
+
+        #급한 Request 선별 2. 가장 재고가 적게 남은 Request.
+        target_request_list = sorted(target_share_list, key=lambda target: target.item_num)
+        urg_Request.append(target_request_list[0])
+
+        #급한 Share 선별 1. 가장 시간이 적게 남은 Share.
+        target_share_list = sorted(target_share_list, key=lambda target: target.dates)
+        urg_Share.append(target_share_list[0])
+
+        #급한 Share 선별 2. 가장 재고가 적게 남은 Share.
+        target_share_list = sorted(target_share_list, key=lambda target: target.item_num)
+        urg_Share.append(target_share_list[0])
+
+        #urgent_items 리스트 업데이트
+        # * urgent_items[0] : 가장 시간이 적게 남은 Request.
+        # * urgent_items[1] : 가장 재고가 적게 남은 Share.
+        # * urgent_items[2] : 가장 시간이 적게 남은 Request.
+        # * urgent_items[3] : 가장 재고가 적게 남은 Share.
+        urgent_items = urg_Request.extend(urg_Share)
+
+    return render(request, "main.html", {'urgent_items' : urgent_items})
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
 
