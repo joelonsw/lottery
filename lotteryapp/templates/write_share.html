@@ -12,16 +12,16 @@
             {% csrf_token %}
             <div class="input_field">
                 <label for="">요청 지점</label>
-                <input type="text" class="input" value="유니스트점" id="store" name="location" required>
+                <input type="text" class="input" value="{{user.profile.location}}" id="store" name="location" required>
             </div>
             <div class="input_field">
                 <label for="">나눠줄 품목</label>
                 <div class="custom_select">
                     <select id="item" name="item" required>
                         <option value="">선택</option>
-                        <option value="lotus">로터스</option>
-                        <option value="icecream">아이스크림</option>
-                        <option value="chocoholic">초코홀릭</option>
+                        <option value="로터스">로터스</option>
+                        <option value="아이스크림">아이스크림</option>
+                        <option value="초코홀릭">초코홀릭</option>
                     </select>
                 </div>
             </div>

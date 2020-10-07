@@ -13,11 +13,13 @@ def main(request):
     urg_Share = []
     urgent_items = []
 
+    print(len(target_share_list))
+    print(len(target_request_list))
     if len(target_share_list) > 0 and len(target_request_list) > 0:
         #급한 Request 선별 1. 가장 시간이 적게 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.dates)
         urg_Request.append(target_request_list[0])
-
+        print(target_request_list[0], "++++++++++++++++")
         #급한 Request 선별 2. 가장 재고가 적게 남은 Request.
         target_request_list = sorted(target_share_list, key=lambda target: target.item_num)
         urg_Request.append(target_request_list[0])
@@ -30,13 +32,19 @@ def main(request):
         target_share_list = sorted(target_share_list, key=lambda target: target.item_num)
         urg_Share.append(target_share_list[0])
 
+        print("Req: ", urg_Request)
+        print("SHare: ", urg_Share)
         #urgent_items 리스트 업데이트
         # * urgent_items[0] : 가장 시간이 적게 남은 Request.
         # * urgent_items[1] : 가장 재고가 적게 남은 Share.
         # * urgent_items[2] : 가장 시간이 적게 남은 Request.
         # * urgent_items[3] : 가장 재고가 적게 남은 Share.
-        urgent_items = urg_Request.extend(urg_Share)
-
+        for i in range (0, len(urg_Request)):
+            urgent_items.append(urg_Request[i])
+        for i in range (0, len(urg_Share)):
+            urgent_items.append(urg_Share[i])
+    
+    print("!!!!!!!!!!!!!!!!!",urgent_items)
     return render(request, "main.html", {'urgent_items' : urgent_items})
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
@@ -47,6 +55,7 @@ def main(request):
 def share(request):
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_share_list = sorted(target_share_list, key=lambda target: target.dates)
+    print(type(target_share_list), "TYPE!!!!!!!!!!!!!!!")
     return render(request, "share.html", {'shares' : target_share_list})
 
 @login_required

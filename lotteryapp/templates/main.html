@@ -31,7 +31,6 @@
             <span class="dot" onclick="currentSlide(3)"></span>
         </div> -->
 </div>
-
 <div style="margin-left:10vw;">
     <h1>가장 급한 Share</h1>
 </div>
@@ -47,9 +46,9 @@
                     <h5>00:50:12</h5>
                 </span>
             </div>
-            <h6>로터스</h6>
-            <h6>유니스트 지점</h6>
-            <h2>100개 남음</h2>
+            <h6>{{urgent_items.0.item}}</h6>
+            <h6>{{urgent_items.0.location}} 지점</h6>
+            <h2>{{urgent_items.0.remain}}개 남음</h2>
             <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
         </div>
     </div>

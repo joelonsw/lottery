@@ -29,7 +29,7 @@
     <div class="limiter">
         <div class="container-login100" style="background-image: url('{% static '/image/lotteworldtower.png' %}');">
             <div class="wrap-login100">
-                <!-- {% csrf_token %} -->
+                {% csrf_token %}
                 <span class="login100-form-logo">
                     <a href="{% url 'signup' %}">
                         <img src="{% static '/image/small_lotte.png' %}" alt="" style="width: 100px;">
