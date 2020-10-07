@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="write_picture">
     <img src="{% static 'image/write_pic.png' %}" alt="" style="width:100%">
 </div>
@@ -14,12 +12,12 @@
             {% csrf_token %}
             <div class="input_field">
                 <label for="">요청 지점</label>
-                <input type="text" class="input" value="유니스트점" id="store" required>
+                <input type="text" class="input" value="유니스트점" id="store" name="location" required>
             </div>
             <div class="input_field">
                 <label for="">나눠줄 품목</label>
                 <div class="custom_select">
-                    <select id="item" required>
+                    <select id="item" name="item" required>
                         <option value="">선택</option>
                         <option value="lotus">로터스</option>
                         <option value="icecream">아이스크림</option>
@@ -29,23 +27,23 @@
             </div>
             <div class="input_field">
                 <label for="">나눠줄 갯수</label>
-                <input type="number" class="input" id="donut_number" required>
+                <input type="number" class="input" id="donut_number" name="item_num" required>
             </div>
             <div class="input_field">
                 <label for="">요청 만료 시간</label>
-                <input type="time" id="time" class="input" min="" max="22:00:00" required>
+                <input type="time" id="time" class="input" min="" max="22:00:00" name="limit_time" required>
             </div>
             <div class="input_field">
                 <label for="">이메일 주소</label>
-                <input type="email" class="input">
+                <input type="email" class="input" name="email">
             </div>
             <div class="input_field">
                 <label for="">휴대폰 번호</label>
-                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone">
             </div>
             <div class="input_field">
                 <label for="">요청 사항</label>
-                <textarea class="textarea"></textarea>
+                <textarea class="textarea" name="contents"></textarea>
             </div>
             <div class="input_field">
                 <input type="submit" value="요청하기" class="btn">
