@@ -1,125 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div>
-        <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
+<div>
+    <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
+</div>
+
+<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+    {% for share in shares %}
+    <div class="course">
+        <div class="course-preview">
+            {% if share.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            {% elif share.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
+            {% elif share.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+            {% endif %}
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress"></div>
+                <span class="progress-text">
+                    <h5>{{share.limit_time}}</h5>
+                </span>
+            </div>
+            <h6>{{share.item}}</h6>
+            <h6>{{share.location}}</h6>
+            <h2>{{share.remain}}개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+        </div>
     </div>
-
-    <div class="courses-container" style="min-height: calc(100vh-68px-235px);">
-        {% for share in shares %}
-        <div class="course">
-            <div class="course-preview">
-            
-                {% if share.item == "CHOCOHOLIC" %}
-                <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
-                {% else %}
-                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-                {% endif %}
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>{{share.limit_time}}</h5>
-                    </span>
-                </div>
-                <h6>{{share.item}}</h6>
-                <h6>{{share.location}}</h6>
-                <h2>{{share.remain}}개 남음</h2>
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div>
-        {% endfor %}
-        <!-- <div class="course">
-            <div class="course-preview">
-                <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>01:56:12</h5>
-                    </span>
-                </div>
-                <h6>초코홀릭</h6>
-                <h6>구영리 지점</h6>
-                <h2>50개 남음</h2>
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div>
-
-        <div class="course">
-            <div class="course-preview">
-                <img src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>01:30:22</h5>
-                    </span>
-                </div>
-                <h6>아이스크림</h6>
-                <h6>울산대 지점</h6>
-                <h2>200개 남음</h2>
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div>
-
-        <div class="course">
-            <div class="course-preview">
-                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>00:50:12</h5>
-                    </span>
-                </div>
-                <h6>로터스</h6>
-                <h6>신촌 지점</h6>
-                <h2>30개 남음</h2>
-
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-preview">
-                <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>00:50:12</h5>
-                    </span>
-                </div>
-                <h6>로터스</h6>
-                <h6>유니스트 지점</h6>
-                <h2>100개 남음</h2>
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div>
-
-        <div class="course">
-            <div class="course-preview">
-                <img src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
-            </div>
-            <div class="course-info">
-                <div class="progress-container">
-                    <div class="progress"></div>
-                    <span class="progress-text">
-                        <h5>01:56:12</h5>
-                    </span>
-                </div>
-                <h6>초코홀릭</h6>
-                <h6>구영리 지점</h6>
-                <h2>50개 남음</h2>
-
-                <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
-            </div>
-        </div> -->
-
-    </div>
+    {% endfor %}
+</div>
 {% endblock content %}
