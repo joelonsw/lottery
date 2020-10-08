@@ -61,11 +61,6 @@ def request(request):
 
 ##아래 주석처리한 로직을 합쳐 share_detail, request_detail에서 구현해주세요! @ 영규님
 ##detail 끌어오가나 할떄 인자로 객체 id 파라미터로 끌고 다니셔야합니다!
-    # def detail(request):
-    #     #객채의 id를 인자로 넘겨받아야 할 것.
-    #     #primaryKey로 해당 객채의 id를 받아, share인지 request인지 조회해서 성격을 넘겨줄 것
-    #     return render(request, "detail.html", {'category' : "shared"})
-
     # def share_response(request):
     #     #객채의 id를 인자로 넘겨받아야 할 것.
     #     #primaryKey로 해당 객체 id로 조회해서 보여주고 Form태그로 요청이 들어오면 DB수정해서 보여줄 것
@@ -81,13 +76,17 @@ def request(request):
     #         #DB update
     #         return redirect(main)    
     #     return render(request, "request_response.html")
+
+# url에 object pk_num을 담아 detail 보여주기
 @login_required
-def share_detail(request):
-    return render(request, "share_detail.html")
+def share_detail(request, detail_id):
+    detail = ItemShare.objects.get(pk=detail_id)
+    return render(request, "share_detail.html", {"detail" : detail})
 
 @login_required
-def request_detail(request):
-    return render(request, "request_detail.html")
+def request_detail(request, detail_id):
+    detail = ItemRequest.objects.get(pk=detail_id)
+    return render(request, "request_detail.html", {"detail" : detail})
 
 
 # 끝

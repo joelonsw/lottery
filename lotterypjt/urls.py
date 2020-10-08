@@ -29,8 +29,8 @@ urlpatterns = [
         # path('detail', lotteryapp.views.detail, name="detail"),
         # path('share_response', lotteryapp.views.share_response, name="share_response"),
         # path('request_response', lotteryapp.views.request_response, name="request_response"),
-    path('share_detail', lotteryapp.views.share_detail, name="share_detail"),
-    path('request_detail', lotteryapp.views.request_detail, name="request_detail"),
+    path('share_detail/<int:detail_id>', lotteryapp.views.share_detail, name="share_detail"),
+    path('request_detail/<int:detail_id>', lotteryapp.views.request_detail, name="request_detail"),
     #about.html 추가 -> 여기엔 우리 팀정보
     path('about', lotteryapp.views.about, name="about"),
     path('', include('user.urls')),

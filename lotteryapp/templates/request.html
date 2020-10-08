@@ -27,7 +27,7 @@
             <h6>{{request.item}}</h6>
             <h6>{{request.location}}</h6>
             <h2>{{request.remain}}개 부족</h2>
-            <button class="btn"><a href="{% url 'request_detail' %}">제가 드릴게요</a></button>
+            <button class="btn"><a href="{% url 'request_detail' request.pk_num %}">제가 드릴게요</a></button>
         </div>
     </div>
     {% endfor %}

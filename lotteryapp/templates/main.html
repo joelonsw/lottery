@@ -41,7 +41,7 @@
             <h6>{{urgent_items.0.item}}</h6>
             <h6>{{urgent_items.0.location}}</h6>
             <h2>{{urgent_items.0.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            <button class="btn"><a href="{% url 'share_detail' urgent_items.0.pk_num %}">제가 가져갈게요</a></button>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
             <h6>{{urgent_items.1.item}}</h6>
             <h6>{{urgent_items.1.location}}</h6>
             <h2>{{urgent_items.1.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            <button class="btn"><a href="{% url 'share_detail' urgent_items.1.pk_num %}">제가 가져갈게요</a></button>
         </div>
     </div>
 </div>
@@ -94,7 +94,7 @@
             <h6>{{urgent_items.2.item}}</h6>
             <h6>{{urgent_items.2.location}}</h6>
             <h2>{{urgent_items.2.remain}}개 부족</h2>
-            <button class="btn"><a href="{% url 'request_detail' %}">제가 드릴게요</a></button>
+            <button class="btn"><a href="{% url 'request_detail' urgent_items.2.pk_num %}">제가 드릴게요</a></button>
         </div>
     </div>
 
@@ -118,7 +118,7 @@
             <h6>{{urgent_items.3.item}}</h6>
             <h6>{{urgent_items.3.location}}</h6>
             <h2>{{urgent_items.3.remain}}개 부족</h2>
-            <button class="btn"><a href="{% url 'request_detail' %}">제가 드릴게요</a></button>
+            <button class="btn"><a href="{% url 'request_detail' urgent_items.3.pk_num %}">제가 드릴게요</a></button>
         </div>
     </div>
 </div>

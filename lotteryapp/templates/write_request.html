@@ -13,7 +13,7 @@
             {% csrf_token %}
             <div class="input_field">
                 <label for="">요청 지점</label>
-                <input type="text" class="input" value="{{user.profile.location}}" id="store" name="location" required>
+                <input type="text" class="input" value="{{user.profile.location}}" id="store" name="location" readonly>
             </div>
             <div class="input_field">
                 <label for="">부족한 품목</label>
@@ -36,11 +36,11 @@
             </div>
             <div class="input_field">
                 <label for="">이메일 주소</label>
-                <input type="email" class="input" name="email">
+                <input type="email" value="{{user.email}}" class="input" name="email">
             </div>
             <div class="input_field">
                 <label for="">휴대폰 번호</label>
-                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone">
+                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone">
             </div>
             <div class="input_field">
                 <label for="">요청 사항</label>
