@@ -91,7 +91,7 @@ def share_accept(request, detail_id):
         share_accept_object.save()
         detail.remain = detail.remain-int(request.POST['num'])
         detail.save()
-        return redirect(share_detail, detail_id)
+        return redirect(main)
     return redirect(share_detail, detail_id)
 
 @login_required
@@ -112,7 +112,7 @@ def request_accept(request, detail_id):
         request_accept_object.save()
         detail.remain = detail.remain-int(request.POST['num'])
         detail.save()
-        return redirect(request_detail, detail_id)    
+        return redirect(main)    
     return redirect(share_detail, detail_id)
 
 # 끝
