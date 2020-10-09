@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from user.models import Profile
+from user.models import *
 from datetime import datetime
 
 # Create your models here.
@@ -93,13 +93,13 @@ class RequestAccept(models.Model):
     request_phone    = models.CharField(max_length=15, blank=True)
     request_contents = models.TextField(max_length=1000, blank=True)
 
-    target           = models.ForeignKey("ItemRequest", on_delete=models.CASCADE)
+    target           = models.ForeignKey(ItemRequest, on_delete=models.CASCADE)
     pk_num           = models.AutoField(primary_key=True, auto_created=True)
-    volunteer        = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
+    volunteer        = models.ForeignKey(User, on_delete=models.CASCADE)
     dates            = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return pk_num
+        return str(self.pk_num)
 
 
 class ShareAccept(models.Model):
@@ -110,10 +110,10 @@ class ShareAccept(models.Model):
     share_phone      = models.CharField(max_length=15, blank=True)
     share_contents   = models.TextField(max_length=1000, blank=True)
 
-    target           = models.ForeignKey("ItemShare", on_delete=models.CASCADE)
+    target           = models.ForeignKey(ItemShare, on_delete=models.CASCADE)
     pk_num           = models.AutoField(primary_key=True, auto_created=True)
-    volunteer        = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
+    volunteer        = models.ForeignKey(User, on_delete=models.CASCADE)
     dates            = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return pk_num
+        return str(self.pk_num)

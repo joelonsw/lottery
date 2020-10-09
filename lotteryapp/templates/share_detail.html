@@ -34,17 +34,18 @@
 
 <div class="wrapper" style="width: 800px;">
     <div class="title">
-        <h3>{{detail.location}} - {{item}}</h3>
+        <h3>{{detail.location}} - {{detail.item}}</h3>
     </div>
     <div class="form">
-        <form action="" method="POST" onsubmit="return submit_click(true)" id="submit_form">
+        <form action="{% url 'share_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(true)" id="submit_form">
+            {% csrf_token %}
             <div class="input_field">
                 <label for="">요청 지점</label>
-                <input type="text" class="input" value="{{user.profile.location}}" id="store" readonly>
+                <input type="text" class="input" value="{{user.profile.location}}" id="store" name="location" readonly>
             </div>
             <div class="input_field">
                 <label for="">요청할 갯수</label>
-                <input type="number" class="input" min="1" max="100" required id="number">
+                <input type="number" class="input" min="1" id="number" name="num" required>
             </div>
             <!-- <div class="input_field">
                 <label for="">예상 픽업 시간</label>
@@ -52,15 +53,15 @@
             </div> -->
             <div class="input_field">
                 <label for="">이메일 주소</label>
-                <input type="email" value="{{user.email}}" class="input">
+                <input type="email" value="{{user.email}}" class="input" name="email">
             </div>
             <div class="input_field">
                 <label for="">휴대폰 번호</label>
-                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone">
             </div>
             <div class="input_field">
                 <label for="">요청 사항</label>
-                <textarea class="textarea"></textarea>
+                <textarea class="textarea" name="content"></textarea>
             </div>
             <div class="input_field">
                 <input type="submit" value="제가 가져갈게요" class="btn">
