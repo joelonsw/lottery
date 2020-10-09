@@ -17,17 +17,21 @@ from datetime import datetime
 # 유효기간 : 만료되는 시간
 
 """
-    location => 요청 지점
-    contents => 본문 내용
-    minute   => 만료 시간 (일단 분 단위)
-    item     => 필요한 품목 이름
-    item_num => 필요한 품목 개수
-    dates    => 게시 날짜
-    pk_num   => primary key
-    author   => 게시한 유저의 foreign key
+    location    => 요청 지점
+    contents    => 본문 내용
+    minute      => 만료 시간 (일단 분 단위)
+    item        => 필요한 품목 이름
+    item_num    => 필요한 품목 개수
+    dates       => 게시 날짜
+    pk_num      => primary key
+    author      => 게시한 유저의 foreign key
 
-    remain   => 요청이나 공유가 들어왔을 때, 들어온 만큼의 수량을 여기서 깎습니다. (decrease 함수 이용)
-    outdate  => 시간이 만료되면 이 값을 True로 바꿔줍니다. (make_outdate 함수 이용)
+    아래 변수는 utils.py에 update_remain이 호출되면 업데이트 되는 변수들 입니다.
+    remain      => 요청이나 공유가 들어왔을 때, 들어온 만큼의 수량을 여기서 깎습니다.
+
+    아래 변수는 utils.py에 update_outdate가 호출되면 업데이트 되는 변수들 입니다.
+    remain_time => limit_time까지 남은 시간을 초로 환산해서 저장
+    outdate     => 시간이 만료되면 이 값을 True로 바꿔줍니다.
 """
 
 class ItemRequest(models.Model):
@@ -45,6 +49,7 @@ class ItemRequest(models.Model):
     author      = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
 
     remain      = models.IntegerField(default=0)
+    remain_time = models.IntegerField(default=0)
     outdate     = models.BooleanField(default=False)
 
     def __str__ (self):
@@ -66,10 +71,12 @@ class ItemShare(models.Model):
     author      = models.ForeignKey("user.Profile", on_delete=models.CASCADE)
 
     remain      = models.IntegerField(default=0)
+    remain_time = models.IntegerField(default=0)
     outdate     = models.BooleanField(default=False)
 
     def __str__ (self):
         return str(self.dates)
+
 
 
 """
