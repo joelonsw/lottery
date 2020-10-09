@@ -27,7 +27,7 @@
             <h6>{{share.item}}</h6>
             <h6>{{share.location}}</h6>
             <h2>{{share.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' %}">제가 가져갈게요</a></button>
+            <button class="btn"><a href="{% url 'share_detail' share.pk_num %}">제가 가져갈게요</a></button>
         </div>
     </div>
     {% endfor %}

@@ -24,17 +24,18 @@
     <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}
         ID :
-        <input type="text" name="username" placeholder="ID"><br>
+        <input type="text" name="username" placeholder="ID" required><br>
         Password :
-        <input type="password" name="password" placeholder="Password"><br>
+        <input type="password" name="password" placeholder="Password" required><br>
         Password Confirmation :
-        <input type="password" name="password_confirm" placeholder="Password를 다시 입력해주세요."><br>
+        <input type="password" name="password_confirm" placeholder="Password를 다시 입력해주세요." required><br>
         e-mail :
-        <input type="email" name="email" placeholder="e-mail"><br>
+        <input type="email" name="email" placeholder="e-mail" required><br>
         점주 :
-        <input type="text" name="fullname" placeholder="이름을 입력해주세요"><br>
+        <input type="text" name="fullname" placeholder="이름을 입력해주세요" required><br>
         지점 :
-        <select name="location">
+        <select name="location" required>
+            <option value="">선택</option>
             <option value="강남역점">강남역점</option>
             <option value="대치점">대치점</option>
             <option value="코엑스점">코엑스점</option>
@@ -45,6 +46,8 @@
             <option value="유니스트점">유니스트점</option>
             <option value="구영리점">구영리점</option>
         </select><br>
+        휴대전화 :
+        <input type="tel" name="phone" placeholder="휴대전화 번호 ex)010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br>
         <input type="submit" value="회원가입">
     </form>
 </body>

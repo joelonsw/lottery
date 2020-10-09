@@ -8,37 +8,44 @@
 <div class="courses-container">
     <div class="course" style="width:800px;">
         <div class="course-preview">
-            <img src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            {% if detail.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+            {% elif detail.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
+            {% elif detail.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+            {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress"></div>
                 <span class="progress-text">
-                    <h5>00:50:12</h5>
+                    <h5>{{ detail.limit_time }}</h5>
                 </span>
             </div>
-            <h6>로터스</h6>
-            <h6>유니스트 지점</h6>
-            <h2>100개 남음</h2>
-            <p>오늘 비가 와서 그런가 생각보다 많이 남았네요ㅜㅜ 필요하신분 가져가세요~ 오시기 전에 핸드폰 번호로 문자 한 번 주세요!</p>
-            <p>010-1234-5678</p>
+            <h6>{{detail.item}}</h6>
+            <h6>{{detail.location}}</h6>
+            <h2>{{detail.remain}}개 남음</h2>
+            <p>{{detail.contents}}</p>
+            <p>{{detail.phone}}</p>
         </div>
     </div>
 </div>
 
 <div class="wrapper" style="width: 800px;">
     <div class="title">
-        <h3>유니스트 지점 - 로터스</h3>
+        <h3>{{detail.location}} - {{detail.item}}</h3>
     </div>
     <div class="form">
-        <form action="" method="POST" onsubmit="return submit_click(true)" id="submit_form">
+        <form action="{% url 'share_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(true)" id="submit_form">
+            {% csrf_token %}
             <div class="input_field">
                 <label for="">요청 지점</label>
-                <input type="text" class="input" value="구영리점" required id="store">
+                <input type="text" class="input" value="{{user.profile.location}}" id="store" name="location" readonly>
             </div>
             <div class="input_field">
                 <label for="">요청할 갯수</label>
-                <input type="number" class="input" min="1" max="100" required id="number">
+                <input type="number" class="input" min="1" id="number" name="num" required>
             </div>
             <!-- <div class="input_field">
                 <label for="">예상 픽업 시간</label>
@@ -46,15 +53,15 @@
             </div> -->
             <div class="input_field">
                 <label for="">이메일 주소</label>
-                <input type="email" class="input">
+                <input type="email" value="{{user.email}}" class="input" name="email">
             </div>
             <div class="input_field">
                 <label for="">휴대폰 번호</label>
-                <input type="tel" class="input" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone">
             </div>
             <div class="input_field">
                 <label for="">요청 사항</label>
-                <textarea class="textarea"></textarea>
+                <textarea class="textarea" name="content"></textarea>
             </div>
             <div class="input_field">
                 <input type="submit" value="제가 가져갈게요" class="btn">
