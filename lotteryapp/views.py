@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from lotteryapp.models import *
-import lotteryapp.utils
+from lotteryapp.utils import *
 from datetime import datetime
 # Create your views here.
 
 @login_required
-def main(request): 
+def main(request):
+    update_outdate()
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_request_list = ItemRequest.objects.filter(outdate=False)
     # urg_Request = []
@@ -48,6 +49,7 @@ def main(request):
 # 그 후, 게시 날짜와 시간이 빠른 순서대로 정렬하여 template으로 전송합니다.
 @login_required
 def share(request):
+    update_outdate()
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_share_list = sorted(target_share_list, key=lambda target: target.dates)
     # print(type(target_share_list), "TYPE!!!!!!!!!!!!!!!")
@@ -55,6 +57,7 @@ def share(request):
 
 @login_required
 def request(request):
+    update_outdate()
     target_request_list = ItemRequest.objects.filter(outdate=False)
     target_request_list = sorted(target_request_list, key=lambda target: target.dates)
     return render(request, "request.html", {'requests' : target_request_list})
@@ -118,6 +121,7 @@ def request_accept(request, detail_id):
 # 끝
 @login_required
 def write(request):
+    update_outdate()
     return render(request, "write.html")
 
 # POST인 경우 model instance 만들고 save.
