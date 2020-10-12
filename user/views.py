@@ -20,6 +20,8 @@ def signup(request):
                 user.profile.fullname = request.POST['fullname']
                 user.profile.location = request.POST['location']
                 user.profile.phone = request.POST['phone']
+                user.profile.address = request.POST['address']
+                user.profile.address_detail = request.POST['address_detail']
                 user.save()
                 return render(request, "home.html", {'alert' : 2})
             else:
