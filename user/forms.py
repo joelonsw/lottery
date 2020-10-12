@@ -14,10 +14,11 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['fullname', 'location', 'phone']
+        fields = ['fullname', 'location', 'phone', 'address']
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['fullname'].required = True
         self.fields['location'].required = True
         self.fields['phone'].required = True
+        self.fields['address'].required = True
