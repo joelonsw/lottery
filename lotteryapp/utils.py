@@ -92,7 +92,7 @@ def sort_by_location(current_user, selection):
         for item in request_list:
             if item.author != current_user:
                 item_location = (item.author.latitude, item.author.longitude)
-                distance      = harersine(current_location, item_location, unit='km')
+                distance      = haversine(current_location, item_location, unit='km')
                 tmp_pair      = (item, distance)
                 request_return.append(tmp_pair)
 
