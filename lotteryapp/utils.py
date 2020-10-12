@@ -14,7 +14,7 @@ def time_vaild_check(target):
        target.dates.day   != now_time.day:
         return False
 
-    limit_hour = int(target.limit_time[0] + target.limit_time[1])
+    limit_hour   = int(target.limit_time[0] + target.limit_time[1])
     limit_minute = int(target.limit_time[3] + target.limit_time[4])
 
     limit_ = datetime(now_time.year, now_time.month, now_time.day, limit_hour, limit_minute, 0, 0)
@@ -53,3 +53,58 @@ def update_remain(num, target):
         if target.remain <= 0:
             target.outdate = True
         target.save()
+
+
+# Google API를 이용해 주소를 파라미터로 받으면 위도/경도로 변환해주는 함수입니다.
+# requests 모듈이 추가적으로 필요합니다. (urllib는 python3 기준으로 자동 탑재)
+# (Google API가 네이버나 카카오에 비해 파싱을 더 잘 한다고 합니다.)
+import requests
+from urllib.parse import quote
+
+def get_location_coordinate(target):
+
+    location = quote(target)
+    URL      = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&sensor=false&language=ko&address={}'.format(location)
+    response = requests.get(URL)
+    result   = response.json()
+
+    latitude  = result['results'][0]['geometry']['location']['lat']
+    longitude = result['results'][0]['geometry']['location']['lng']
+
+    return latitude, longitude
+
+
+# 현재 유저 위치를 기준으로 request와 share의 item들을 정렬 합니다.
+# harversine 모듈이 필요합니다. (pip 버전 20.X 이상에서 다운로드 가능합니다.)
+from harversine import harversine
+
+def sort_by_location(current_user):
+
+    current_location = (current_user.latitude, current_user.longitude)
+    request_list     = ItemRequest.objects.filter(outdate=False)
+    share_list       = ItemShare.objects.filter(outdate=False)
+
+    request_return   = []
+    share_return     = []
+
+    for item in request_list:
+        if item.author != current_user:
+            item_location = (item.author.latitude, item.author.longitude)
+            distance      = harversine(current_location)
+            tmp_pair      = (item, distance)
+            request_return.append(tmp)
+
+    for item in share_list:
+        if item.author != current_user:
+            item_location = (item.author.latitude, item.author.longitude)
+            distance      = harversine(current_location)
+            tmp_pair      = (item, distance)
+            share_return.append(tmp)
+
+    request_sort    = sorted(request_return, key=lambda target: target[1])
+    share_sort      = sorted(share_return, key=lambda target: target[1])
+
+    request_result  = [item[0] for item in request_sort]
+    share_result    = [item[0] for item in share_sort]
+
+    return request_result, share_result

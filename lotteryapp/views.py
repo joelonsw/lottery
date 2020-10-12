@@ -39,8 +39,7 @@ def main(request):
         #     urgent_items.append(urg_Request[i])
         # for i in range (0, len(urg_Share)):
         #     urgent_items.append(urg_Share[i])
-    
-    # print("!!!!!!!!!!!!!!!!!",urgent_items)
+
     return render(request, "main.html", {'urgent_items' : urgent_items})
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
@@ -52,7 +51,7 @@ def share(request):
     update_outdate()
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_share_list = sorted(target_share_list, key=lambda target: target.dates)
-    # print(type(target_share_list), "TYPE!!!!!!!!!!!!!!!")
+
     return render(request, "share.html", {'shares' : target_share_list})
 
 @login_required
