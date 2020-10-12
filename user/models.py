@@ -11,6 +11,9 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20, blank=False)
     address = models.CharField(max_length=100, blank=False)
     address_detail = models.CharField(max_length=100, blank=False)
+    # 위도, 경도 초기화를 위해 넣었습니다. -현준-
+    latitude = models.FloatField(default=0.0)
+    longitude = models.FloatField(default=0.0)
 
     def __str__(self):
         return self.user.username

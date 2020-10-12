@@ -52,6 +52,8 @@ def share(request):
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_share_list = sorted(target_share_list, key=lambda target: target.dates)
 
+    current_user         = Profile.objects.get(user=request.user.pk)
+    share_ver_location   = sort_by_location(current_user, "share")
     return render(request, "share.html", {'shares' : target_share_list})
 
 @login_required
@@ -59,6 +61,9 @@ def request(request):
     update_outdate()
     target_request_list = ItemRequest.objects.filter(outdate=False)
     target_request_list = sorted(target_request_list, key=lambda target: target.dates)
+
+    current_user         = Profile.objects.get(user=request.user.pk)
+    request_ver_location = sort_by_location(current_user, "request")
     return render(request, "request.html", {'requests' : target_request_list})
 
 ##아래 주석처리한 로직을 합쳐 share_detail, request_detail에서 구현해주세요! @ 영규님

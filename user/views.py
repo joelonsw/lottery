@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm
+from lotteryapp.utils import get_location_coordinate
 
 # Create your views here.
 def home(request):
@@ -22,6 +23,11 @@ def signup(request):
                 user.profile.phone = request.POST['phone']
                 user.profile.address = request.POST['address']
                 user.profile.address_detail = request.POST['address_detail']
+                # 위도, 경도 초기화를 위해 넣었습니다. -현준-
+                lat, lng = get_location_coordinate(request.POST['address'])
+                user.profile.latitude = lat
+                user.profile.longitude = lng
+
                 user.save()
                 return render(request, "home.html", {'alert' : 2})
             else:
