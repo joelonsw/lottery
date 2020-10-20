@@ -1,13 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOTTERY 회원가입</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_util.css' %}">
+    <script src="https://kit.fontawesome.com/23831bcd64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/write_share.css' %}">
+    <!--===============================================================================================-->
 </head>
 
-<body style="display: flex; flex-direction: column; align-items: center;" >
+<!-- <body style="display: flex; flex-direction: column; align-items: center;" > -->
+
+<body>
     {% if alert == 1 %}
     <script>
         alert('비밀번호가 일치하지 않습니다.')
@@ -18,42 +28,62 @@
         alert('이미 있는 ID이거나 빈 항목이 있습니다.')
     </script>
     {% endif %}
-
-    <h1>회원가입 페이지</h1>
-
-    <form method="POST" action="{% url 'signup' %}">
-        {% csrf_token %}
-        ID :
-        <input type="text" name="username" placeholder="ID" required><br>
-        Password :
-        <input type="password" name="password" placeholder="Password" required><br>
-        Password Confirmation :
-        <input type="password" name="password_confirm" placeholder="Password를 다시 입력해주세요." required><br>
-        e-mail :
-        <input type="email" name="email" placeholder="e-mail" required><br>
-        점주 :
-        <input type="text" name="fullname" placeholder="이름을 입력해주세요" required><br>
-        지점 :
-        <select name="location" required>
-            <option value="">선택</option>
-            <option value="강남역점">강남역점</option>
-            <option value="대치점">대치점</option>
-            <option value="코엑스점">코엑스점</option>
-            <option value="수서역사점">수서역사점</option>
-            <option value="부천상동점">부천상동점</option>
-            <option value="부천중동점">부천중동점</option>
-            <option value="스타필드부천점">스타필드부천점</option>
-            <option value="유니스트점">유니스트점</option>
-            <option value="구영리점">구영리점</option>
-        </select><br>
-        도로명 주소 :
-        <input type="text" name="address" placeholder="주소 ex)울산광역시 울주군 언양읍 유니스트길 50" required><br>
-        상세 주소 :
-        <input type="text" name="address_detail" placeholder="ex)301동 101호" required><br>
-        휴대전화 :
-        <input type="tel" name="phone" placeholder="휴대전화 번호 ex)010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br>
-        <input type="submit" value="회원가입">
-    </form>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('{% static '/image/lotteworldtower.jpg' %}');">
+            <!-- <div class="wrap-login100"> -->
+            <div class="wrapper" style="background-color: beige;">
+                <div class="title">
+                    <h2>회원가입 페이지</h2>
+                </div>
+                <form method="POST" action="{% url 'signup' %}" id="submit_form">
+                    {% csrf_token %}
+                    <div class="input_field">
+                        <label for="">아이디 </label>
+                        <input type="text" name="username" placeholder="ID" required>
+                    </div>
+                    <div class="input_field">
+                        <label for="">패스워드</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="input_field">
+                        <label for="">패스워드 확인</label>
+                        <input type="password" name="password_confirm" placeholder="Password를 다시 입력해주세요." required>
+                    </div>
+                    <div class="input_field">
+                        <label for="">E-Mail</label>
+                        <input type="email" name="email" placeholder="e-mail" required>
+                    </div>
+                    <div class="input_field">
+                        <label for="">점주 </label>
+                        <input type="text" name="fullname" placeholder="이름을 입력해주세요" required>
+                    </div>
+                    <div class="input_field">
+                        <label for="">지점 </label>
+                        <select name="location" required>
+                            <option value="">선택</option>
+                            <option value="강남역점">강남역점</option>
+                            <option value="대치점">대치점</option>
+                            <option value="코엑스점">코엑스점</option>
+                            <option value="수서역사점">수서역사점</option>
+                            <option value="부천상동점">부천상동점</option>
+                            <option value="부천중동점">부천중동점</option>
+                            <option value="스타필드부천점">스타필드부천점</option>
+                            <option value="유니스트점">유니스트점</option>
+                            <option value="구영리점">구영리점</option>
+                        </select><br>
+                        도로명 주소 :
+                        <input type="text" name="address" placeholder="주소 ex)울산광역시 울주군 언양읍 유니스트길 50" required><br>
+                        상세 주소 :
+                        <input type="text" name="address_detail" placeholder="ex)301동 101호" required><br>
+                        휴대전화 :
+                        <input type="tel" name="phone" placeholder="휴대전화 번호 ex)010-1234-5678"
+                            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br>
+                        <input type="submit" value="회원가입">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
 </body>
 
 </html>
