@@ -12,22 +12,25 @@ def main(request):
     target_request_list = ItemRequest.objects.filter(outdate=False)
     # urg_Request = []
     # urg_Share = []
-    urgent_items = []
+    urgent_share_items = []
+    urgent_request_items = []
 
-    if len(target_share_list) > 0 and len(target_request_list) > 0:
+    if len(target_share_list) > 0:
 
         #급한 Share 선별 1. 가장 시간이 적게 남은 Share.
         target_share_list = sorted(target_share_list, key=lambda target: target.dates)
-        urgent_items.append(target_share_list[0])
+        urgent_share_items.append(target_share_list[0])
         #급한 Share 선별 2. 가장 재고가 많이 남은 Share.
         target_share_list = sorted(target_share_list, key=lambda target: target.remain, reverse=True)
-        urgent_items.append(target_share_list[0])
+        urgent_share_items.append(target_share_list[0])
+    
+    if len(target_request_list) > 0:
         #급한 Request 선별 1. 가장 시간이 적게 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.dates)
-        urgent_items.append(target_request_list[0])
+        urgent_request_items.append(target_request_list[0])
         #급한 Request 선별 2. 가장 재고가 많이 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.remain, reverse=True)
-        urgent_items.append(target_request_list[0])
+        urgent_request_items.append(target_request_list[0])
 
 
         #urgent_items 리스트 업데이트
@@ -40,7 +43,7 @@ def main(request):
         # for i in range (0, len(urg_Share)):
         #     urgent_items.append(urg_Share[i])
 
-    return render(request, "main.html", {'urgent_items' : urgent_items})
+    return render(request, "main.html", {'urgent_share_items' : urgent_share_items, 'urgent_request_items' : urgent_request_items})
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
 
