@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/23831bcd64.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <!--===============================================================================================-->
 </head>
 
@@ -43,27 +44,62 @@
                 <form class="login100-form validate-form" method="POST" action="{% url 'signin' %}">
                     {% csrf_token %}
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off" readonly 
+                        onfocus="this.removeAttribute('readonly');"> 
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" type="password" name="password" placeholder="Password" autocomplete="off" readonly 
+                        onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
                         </button>
-                    </div>
+                        <div class="info">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        </div>
                 </form>
-
             </div>
         </div>
     </div>
 
-
-    <div id="dropDownSelect1"></div>
-
-
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Lottery 프로젝트는... </p>
+        </div>
+    </div>
+    
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>   
+    
 </body>
 
 </html>
