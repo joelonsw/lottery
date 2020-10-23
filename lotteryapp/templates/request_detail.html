@@ -4,8 +4,8 @@
 <!-- 지도 스타일 -->
 <style>
     #map {
-      height: 500px;
-      width: 700px;
+        height: 500px;
+        width: 700px;
     }
 </style>
 
@@ -41,29 +41,33 @@
         </div>
     </div>
 </div>
-
-<div id="map" style="position:relative; overflow:hidden; width:50vw; margin-left:25vw; height: 35vh;"></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+    <div id="map" style="position:relative; overflow:hidden; width:800px; height: 300px;">
+    </div>
+</div>
 <script>
     let map;
-    var loc_lat = parseFloat({{detail.author.latitude}});
-    var loc_lng = parseFloat({{detail.author.longitude}});
+    var loc_lat = parseFloat({{ detail.author.latitude }});
+    var loc_lng = parseFloat({{ detail.author.longitude }});
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: loc_lat, lng: loc_lng },
-        zoom: 17,
-    });
-}
+            center: { lat: loc_lat, lng: loc_lng },
+            zoom: 17,
+        });
+    }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&callback=initMap"async defer>
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&callback=initMap" async
+    defer>
+    </script>
 
 <div class="wrapper" style="width: 800px;">
     <div class="title">
         <h3>{{detail.location}} - {{detail.item}}</h3>
     </div>
     <div class="form">
-        <form action="{% url 'request_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(false)" id="submit_form">
+        <form action="{% url 'request_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(false)"
+            id="submit_form">
             {% csrf_token %}
             <div class="input_field">
                 <label for="">지원 지점</label>
@@ -83,7 +87,8 @@
             </div>
             <div class="input_field">
                 <label for="">휴대폰 번호</label>
-                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone" required>
+                <input type="tel" class="input" value="{{user.profile.phone}}" placeholder="ex) 010-1234-5678"
+                    pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone" required>
             </div>
             <div class="input_field">
                 <label for="">요청 사항</label>
