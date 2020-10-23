@@ -54,65 +54,57 @@
                 <form class="login100-form validate-form" method="POST" action="{% url 'signin' %}">
                     {% csrf_token %}
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off" readonly 
-                        onfocus="this.removeAttribute('readonly');"> 
+                        <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off"
+                            readonly onfocus="this.removeAttribute('readonly');">
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="password" placeholder="Password" autocomplete="off" readonly 
-                        onfocus="this.removeAttribute('readonly');">
+                        <input class="input100" type="password" name="password" placeholder="Password"
+                            autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
                         </button>
                         <div class="info">
-                            <i class="fas fa-question-circle" onclick="hello()"></i>
+                            <i class="fas fa-question-circle" onclick="popup()"></i>
                         </div>
-                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="myModal" id="myModal">
-        <h2>아 이거봐라?</h2>
-    </div>
 
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="popup()">&times;</div>
+            <h2>LOTTERY는</h2>
+            <br>
+            <p>LOTTE GRS 소속의 점주들이 이미 DB에 등록이 되어 있다고 가정하고 제작하였습니다. 
+            저희는 크리스피 크림 도넛을 예시로 선정하여 강남역, 대치역, 서울대 입구역점, 유니스트점 점주들 간의 재고 나눔 서비스를 기획하였습니다. 
+            <br>
+            서비스 이용을 위해서는 로그인 창 위의 롯데 마크를 선택해 회원가입을 진행해 주시거나, 
+            강남역 점주로써 서비스를 사용하실 수 있게 ID와 Password를 제공해드리겠습니다. 
+            <br>
+            ID: kangnam
+            PW: kangnam123
+            </p>
+        </div>
+    </div>
     <!-- <div class="modal" id="myModal"> 
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Lottery 프로젝트는... </p>
         </div>
     </div> -->
-    
+
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        console.log(modal)
-        // Get the button that opens the modal
-        
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        console.log(span)
-        // When the user clicks the button, open the modal 
-        function hello() {
-            console.log("???");
-          modal.style.display = "block";
+        function popup() {
+            document.getElementById('popup-1').classList.toggle("active");
         }
-        
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-          modal.style.display = "none";
-        }
-        
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-        </script>   
-    
+    </script>
+
 </body>
 
 </html>
