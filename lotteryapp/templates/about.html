@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div>
+<div class="pc">
     <img src="{% static 'image/about_pic.png' %}" alt="" style="width: 100%;">
+</div>
+<div class="mobile">
+    <img src="{% static 'image/mobile_about_pic.png' %}" alt="" style="width: 100%;">
 </div>
 <div class="team_intro">
     <div class="courses-container" style="min-height: calc(100vh-68px-235px);">
@@ -11,7 +14,7 @@
                 <img src="{% static 'image/team/ys.jpg' %}" alt="" style="width:100%">
             </div>
             <div class="course-info">
-                <h6>Front-end</h6>
+                <h6>Front-end / PM</h6>
                 <h2>조영상</h2>
                 <button class="btn"><a href="https://papimon.tistory.com/">contact</a></button>
             </div>
@@ -41,7 +44,7 @@
                 <img src="{% static 'image/team/default.jpg' %}" alt="" style="width:100%">
             </div>
             <div class="course-info">
-                <h6>Back-end</h6>
+                <h6>Back-end / 기획</h6>
                 <h2>차준형</h2>
                 <button class="btn"><a href="">contact</a></button>
             </div>

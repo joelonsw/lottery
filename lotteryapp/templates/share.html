@@ -1,35 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div>
+<div class="pc">
     <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
 </div>
-
-<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
-    {% for share in shares %}
-    <div class="course">
-        <div class="course-preview">
-            {% if share.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-            {% elif share.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
-            {% elif share.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
-            {% endif %}
-        </div>
-        <div class="course-info">
-            <div class="progress-container">
-                <div class="progress"></div>
-                <span class="progress-text">
-                    <h5>{{share.limit_time}}</h5>
-                </span>
+<div class="mobile">
+    <img src="{% static 'image/mobile_share_pic.png' %}" alt="" style="width: 100%;">
+</div>
+<div style="min-height: 50vh;">
+    <div class="courses-container">
+        {% if shares %}
+        {% for share in shares %}
+        <div class="course">
+            <div class="course-preview">
+                {% if share.item == "로터스" %}
+                <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
+                {% elif share.item == "아이스크림" %}
+                <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
+                {% elif share.item == "초코홀릭" %}
+                <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+                {% endif %}
             </div>
-            <h6>{{share.item}}</h6>
-            <h6>{{share.location}}</h6>
-            <h2>{{share.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' share.pk_num %}">제가 가져갈게요</a></button>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        <h5>{{share.limit_time}}</h5>
+                    </span>
+                </div>
+                <h6>{{share.item}}</h6>
+                <h6>{{share.location}}</h6>
+                <h2>{{share.remain}}개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' share.pk_num %}">제가 가져갈게요</a></button>
+            </div>
         </div>
+        {% endfor %}
+        {% else %}
+        <h2>요청이 없네?</h2>
+        {% endif %}
     </div>
-    {% endfor %}
 </div>
 {% endblock content %}
