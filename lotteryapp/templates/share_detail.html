@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<!-- 지도 스타일 -->
+<style>
+    #map {
+      height: 500px;
+      width: 700px;
+    }
+</style>
+
 <div>
     <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
 </div>
@@ -31,6 +39,22 @@
         </div>
     </div>
 </div>
+
+<div id="map"></div>
+<script>
+    let map;
+    var loc_lat = parseFloat({{detail.author.latitude}});
+    var loc_lng = parseFloat({{detail.author.longitude}});
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: loc_lat, lng: loc_lng },
+        zoom: 17,
+    });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&callback=initMap"async defer>
+</script>
 
 <div class="wrapper" style="width: 800px;">
     <div class="title">
