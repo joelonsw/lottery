@@ -7,6 +7,13 @@
     function renewtime(id, sec){
         // console.log(id, sec)
         var text = document.getElementById(id);
+        var bar = document.getElementById("bar"+id);
+        if(sec>10800){
+            bar.style.width = "100%";
+        }else{
+            bar.style.width = (sec/10800)*100 + "%";
+        }
+
         var hour = parseInt(sec/3600);
         var minute = parseInt((sec-hour*3600)/60);
         var second = parseInt(sec-(hour*3600)-(minute*60));
@@ -57,7 +64,9 @@
             </div>
             <div class="course-info">
                 <div class="progress-container">
-                    <div class="progress"></div>
+                    <div class="progress">
+                        <div id="bar{{share.pk_num}}" class="progress" style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                    </div>
                     <span class="progress-text">
                     <h5 id="{{share.pk_num}}">{{share.remain_time | hms }} 남음</h5>
                     </span>
