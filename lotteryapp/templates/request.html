@@ -36,7 +36,12 @@
         </div>
         {% endfor %}
         {% else %}
-        <h2>요청이없네?</h2>
+        <div class="pc">
+            <img src="{% static 'image/no_request_pc.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="mobile">
+            <img src="{% static 'image/no_request_mobile.png' %}" alt="" style="width:100%">
+        </div>
         {% endif %}
     </div>
 </div>

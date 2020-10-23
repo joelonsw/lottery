@@ -67,8 +67,11 @@
     </div>
 </div>
 {% else %}
-<div>
-    <h2>아무 급한 나눔이 없어요!</h2>
+<div class="pc">
+    <img src="{% static 'image/no_share_home.png' %}" alt="" style="width:100%">
+</div>
+<div class="mobile">
+    <img src="{% static 'image/no_share_mobile_home.png' %}" alt="" style="width:100%">
 </div>
 {% endif %}
 <br><br>
@@ -125,7 +128,12 @@
 </div>
 {% else %}
 <div>
-    <h2>급한 요청이 없어요!</h2>
+    <div class="pc">
+        <img src="{% static 'image/no_request_home.png' %}" alt="" style="width:100%">
+    </div>
+    <div class="mobile">
+        <img src="{% static 'image/no_request_mobile_home.png' %}" alt="" style="width:100%">
+    </div>
 </div>
 {% endif %}
 {% endblock content %}
