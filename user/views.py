@@ -24,35 +24,44 @@ def signup(request):
     if request.method == "POST":
         if request.POST['password'] == request.POST['password_confirm']:
             filled_form = UserForm(request.POST)
-            if filled_form.is_valid() and request.POST['location'] is not "":
-                user = User.objects.create_user(username=request.POST['username'], password = request.POST['password'], email = request.POST['email'])
-                user.profile.fullname = request.POST['fullname']
-                user.profile.location = request.POST['location']
-                user.profile.phone = request.POST['phone']
-                user.profile.address = request.POST['address']
-                user.profile.address_detail = request.POST['address_detail']
-                # 위도, 경도 초기화를 위해 넣었습니다. -현준-
-                lat, lng = get_location_coordinate(request.POST['address'])
-                user.profile.latitude = lat
-                user.profile.longitude = lng
+            if request.POST['location'] is not "":
+                if filled_form.is_valid():
+                    user = User.objects.create_user(username=request.POST['username'], password = request.POST['password'], email = request.POST['email'])
+                    user.profile.fullname = request.POST['fullname']
+                    user.profile.location = request.POST['location']
+                    user.profile.phone = request.POST['phone']
+                    if request.POST['location'] == "강남역점":
+                        user.profile.address = "서울 강남구 강남대로 376"
+                    if request.POST['location'] == "대치점":
+                        user.profile.address = "서울 강남구 도곡로 460"
+                    if request.POST['location'] == "서울대입구역점":
+                        user.profile.address = "서울 관악구 관악로 202"
+                    if request.POST['location'] == "유니스트점":
+                        user.profile.address = "울산광역시 울주군 언양읍 유니스트길 50"
+                    # 위도, 경도 초기화를 위해 넣었습니다. -현준-
+                    lat, lng = get_location_coordinate(user.profile.address)
+                    user.profile.latitude = lat
+                    user.profile.longitude = lng
 
-                # 이메일 인증
-                # user.is_active = False # 유저 비활성화
-                user.save()
-                # current_site = get_current_site(request) 
-                # message = render_to_string('activation_email.html', {
-                #     'user': user,
-                #     'domain': current_site.domain,
-                #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                #     'token': account_activation_token.make_token(user),
-                # })
-                # mail_title = "계정 활성화 확인 이메일"
-                # mail_to = request.POST['email']
-                # email = EmailMessage(mail_title, message, to=[mail_to])
-                # email.send()
-                return render(request, "home.html", {'alert' : 2})
+                    # 이메일 인증
+                    # user.is_active = False # 유저 비활성화
+                    user.save()
+                    # current_site = get_current_site(request) 
+                    # message = render_to_string('activation_email.html', {
+                    #     'user': user,
+                    #     'domain': current_site.domain,
+                    #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    #     'token': account_activation_token.make_token(user),
+                    # })
+                    # mail_title = "계정 활성화 확인 이메일"
+                    # mail_to = request.POST['email']
+                    # email = EmailMessage(mail_title, message, to=[mail_to])
+                    # email.send()
+                    return render(request, "home.html", {'alert' : 2})
+                else:
+                    return render(request, "signup.html", {'alert' : 2})
             else:
-                return render(request, "signup.html", {'alert' : 2})
+                return render(request, "signup.html", {'alert' : 3})
         else:
             return render(request, "signup.html", {'alert' : 1})
     return render(request, "signup.html")

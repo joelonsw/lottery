@@ -24,7 +24,12 @@
     {% endif %}
     {% if alert == 2 %}
     <script>
-        alert('이미 있는 ID이거나 빈 항목이 있습니다.')
+        alert('이미 있는 ID입니다.')
+    </script>
+    {% endif %}
+    {% if alert == 3 %}
+    <script>
+        alert('지점을 선택해주세요.')
     </script>
     {% endif %}
     <div class="limiter">
@@ -65,24 +70,19 @@
                                 <option value="">선택</option>
                                 <option value="강남역점">강남역점</option>
                                 <option value="대치점">대치점</option>
-                                <option value="코엑스점">코엑스점</option>
-                                <option value="수서역사점">수서역사점</option>
-                                <option value="부천상동점">부천상동점</option>
-                                <option value="부천중동점">부천중동점</option>
-                                <option value="스타필드부천점">스타필드부천점</option>
+                                <option value="서울대입구역점">서울대입구역점</option>
                                 <option value="유니스트점">유니스트점</option>
-                                <option value="구영리점">구영리점</option>
                             </select>
                         </div>
                     </div>
-                    <div class="input_field">
+                    <!-- <div class="input_field">
                         <label for=""> 도로명 주소 </label>
                         <input class="input" type="text" name="address" placeholder="주소 ex)울산광역시 울주군 언양읍 유니스트길 50" required>
                     </div>
                     <div class="input_field">
                         <label for="">상세 주소 </label>
                         <input class="input" type="text" name="address_detail" placeholder="ex)301동 101호">
-                    </div>
+                    </div> -->
                     <div class="input_field">
                         <label for=""> 휴대전화 </label>
                         <input class="input" type="tel" name="phone" placeholder="휴대전화 번호 ex)010-1234-5678"

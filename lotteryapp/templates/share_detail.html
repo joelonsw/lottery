@@ -50,14 +50,20 @@
 </div>
 <script>
     let map;
-    var loc_lat = parseFloat({{ detail.author.latitude }});
-    var loc_lng = parseFloat({{ detail.author.longitude }});
+    var loc_lat = parseFloat({{detail.author.latitude}});
+    var loc_lng = parseFloat({{detail.author.longitude}});
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: loc_lat, lng: loc_lng },
-            zoom: 17,
-        });
+        center: { lat: loc_lat, lng: loc_lng },
+        zoom: 18,
+    });
+
+    // 마커 표시
+    const marker = new google.maps.Marker({
+        position: { lat: loc_lat, lng: loc_lng },
+        map: map,
+    });
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&callback=initMap" async
