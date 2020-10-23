@@ -5,6 +5,7 @@ from .forms import UserForm
 from lotteryapp.models import *
 from lotteryapp.mlmodule import *
 from lotteryapp.utils import *
+import numpy as np
 
 # Create your views here.
 def home(request):
@@ -14,12 +15,13 @@ def home(request):
 def mypage(request):
     current_user = Profile.objects.get(user=request.user.pk)
     order_list   = OrderItem.objects.filter(author=current_user)
-    order_list   = sorted(order_list, key=lambda target: target.dates)
+    order_list   = sorted(order_list, key=lambda target: target.order_date)
     share_list   = ItemShare.objects.filter(author=current_user)
     share_list   = sorted(share_list, key=lambda target: target.dates)
     request_list = ItemRequest.objects.filter(author=current_user)
     request_list = sorted(request_list, key=lambda target: target.dates)
 
+    #calibrate_RS_data(current_user, "로터스")
     return render(request, "mypage.html", {"order_list" : order_list, "share_list" : share_list, "request_list" : request_list})
 
 

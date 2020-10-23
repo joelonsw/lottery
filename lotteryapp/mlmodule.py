@@ -4,6 +4,8 @@ from user.models import *
 # numpy ver 1.19.2
 import numpy as np
 
+# Linear regression을 이용한 예측 모델입니다.
+# Householder 변환을 이용했습니다. (자세한 알고리즘은 구글링)
 class LinearFitting:
 
     def __init__(self, name):
@@ -30,6 +32,9 @@ class LinearFitting:
         
         return Q, R
 
+    # utils.py에 있는 calibrate_RS_data 함수를 통해 정리된 데이터로 학습합니다.
+    # parameter로 위 함수의 return 배열이 필요합니다.
+    # 학습이 완료되면 slope와 intercept를 저장합니다.
     def get_line_from_data(self, data):
         m, n = data.shape
         A = np.array([data[:,0], np.ones(m)]).T
@@ -45,6 +50,7 @@ class LinearFitting:
         self.slope = slope
         self.intercept = intercept
 
+    # 모델 학습을 완료시킨 후, target parameter에 값을 넣으면 예측 값을 반환합니다.
     def fitting(self, target):
         result = target * self.slope + self.intercept
         return result

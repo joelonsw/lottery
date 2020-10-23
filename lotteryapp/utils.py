@@ -1,5 +1,6 @@
 from .models import *
 from datetime import datetime
+import numpy as np
 
 # 현재 시간과 비교해서 유효한 시간을 갖는지 검사합니다.
 # 유효한 시간이 아니면 False를, 아직 유효하다면 True를 반환합니다.
@@ -54,26 +55,38 @@ def update_remain(num, target):
             target.outdate = True
         target.save()
 
+
+# 발주량과 Share/Request 내역을 정리합니다.
+# ML module에 들어가기 전에 필요합니다.
+# 현재 유저와 정리할 item 이름을 parameter로 받습니다.
 def calibrate_RS_data(current_user, item):
     order_list   = OrderItem.objects.filter(author=current_user).filter(item_name=item)
-    share_list   = ItemShare.objects.filter(author=current_user).filter(item=item)
-    request_list = ItemRequest.objects.filter(author=current_user).filter(item=item)
+
+    # 만약 발주 내역이 10일 미만인 경우 데이터가 충분하지 않은 것으로 판단합니다.
+    if len(order_list) < 10:
+        return None
 
     result = []
 
     for order in order_list:
-        target_date    = order.order_date
-        share_num, request_num = 0
+        target_date = order.order_date
+        share_num = 0
+        request_num = 0
 
-        share_target   = share_list.get(dates=target_date)
-        request_target = request_list.get(dates=target_date)
-
-        if share_target != None:
+        try:
+            share_target = ItemShare.objects.filter(author=current_user).filter(item=item).get(dates=target_date)
             share_num = share_target.item_num
-        if request_target != None:
+        except ItemShare.DoesNotExist:
+            share_num = 0
+
+        try:
+            request_target = ItemRequest.objects.filter(author=current_user).filter(item=item).get(dates=target_date)
             request_num = request_target.item_num
+        except ItemRequest.DoesNotExist:
+            request_num = 0
 
         diff = share_num - request_num
         result.append([order.item_num, diff])
 
+    print(result)
     return np.array(result)
