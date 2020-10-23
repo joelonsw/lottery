@@ -9,10 +9,12 @@
     }
 </style>
 
-<div>
+<div class="pc">
     <img src="{% static 'image/request_pic.png' %}" alt="" style="width: 100%;">
 </div>
-
+<div class="mobile">
+    <img src="{% static 'image/mobile_request_pic.png' %}" alt="" style="width: 100%;">
+</div>
 <div class="courses-container">
     <div class="course" style="width: 800px;">
         <div class="course-preview">
@@ -40,7 +42,7 @@
     </div>
 </div>
 
-<div id="map"></div>
+<div id="map" style="position:relative; overflow:hidden; width:50vw; margin-left:25vw; height: 35vh;"></div>
 <script>
     let map;
     var loc_lat = parseFloat({{detail.author.latitude}});
