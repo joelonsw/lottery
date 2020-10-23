@@ -53,3 +53,27 @@ def update_remain(num, target):
         if target.remain <= 0:
             target.outdate = True
         target.save()
+
+def calibrate_RS_data(current_user, item):
+    order_list   = OrderItem.objects.filter(author=current_user).filter(item_name=item)
+    share_list   = ItemShare.objects.filter(author=current_user).filter(item=item)
+    request_list = ItemRequest.objects.filter(author=current_user).filter(item=item)
+
+    result = []
+
+    for order in order_list:
+        target_date    = order.order_date
+        share_num, request_num = 0
+
+        share_target   = share_list.get(dates=target_date)
+        request_target = request_list.get(dates=target_date)
+
+        if share_target != None:
+            share_num = share_target.item_num
+        if request_target != None:
+            request_num = request_target.item_num
+
+        diff = share_num - request_num
+        result.append([order.item_num, diff])
+
+    return np.array(result)
