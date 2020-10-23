@@ -27,6 +27,16 @@
         alert('회원가입이 성공적으로 완료되었습니다!')
     </script>
     {% endif %}
+    {% if alert == 3 %}
+    <script>
+        alert('이메일 인증이 완료되었습니다!')
+    </script>
+    {% endif %}
+    {% if alert == 4 %}
+    <script>
+        alert('이미 인증이 완료된 계정이거나 토큰이 유효하지 않습니다.')
+    </script>
+    {% endif %}
     <div class="limiter">
         <div class="container-login100" style="background-image: url('{% static '/image/lotteworldtower.jpg' %}');">
             <div class="wrap-login100">
