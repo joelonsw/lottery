@@ -36,6 +36,12 @@ def signup(request):
                         user.profile.address = "서울 강남구 도곡로 460"
                     if request.POST['location'] == "서울대입구역점":
                         user.profile.address = "서울 관악구 관악로 202"
+                    if request.POST['location'] == "사당점":
+                        user.profile.address = "서울 관악구 과천대로 947 사당타워"
+                    if request.POST['location'] == "코엑스몰점":
+                        user.profile.address = "서울 강남구 봉은사로 524 코엑스"
+                    if request.POST['location'] == "남부터미널점":
+                        user.profile.address = "서울 서초구 효령로 292 서울남부터미널 상가 1층"
                     if request.POST['location'] == "유니스트점":
                         user.profile.address = "울산광역시 울주군 언양읍 유니스트길 50"
                     # 위도, 경도 초기화를 위해 넣었습니다. -현준-
