@@ -25,7 +25,7 @@
                 <div class="progress-container">
                     <div class="progress"></div>
                     <span class="progress-text">
-                        <h5>{{request.limit_time}}</h5>
+                        <h5>{{request.remain_time}}</h5>
                     </span>
                 </div>
                 <h6>{{request.item}}</h6>
@@ -41,6 +41,16 @@
         </div>
         <div class="mobile">
             <img src="{% static 'image/no_request_mobile.png' %}" alt="" style="width:100%">
+        </div>        
+        <div style="width: 100%; display: flex; justify-content: center;">
+            <button style="
+            background-color: rgb(218, 41, 28);
+            border: 0;
+            border-radius: 50px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 17px;
+            padding: 12px 25px;"><a href="{% url 'write_share' %}">Share 작성하러 가기!</a></button>
         </div>
         {% endif %}
     </div>
