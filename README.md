@@ -1,4 +1,4 @@
-# LOTTERY([바로가기](http://www.lottery-unist.ml){:target="_blank"})
+# LOTTERY([바로가기](http://www.lottery-unist.ml))
 ## UNIST-멋사 2020 해커톤
 -----
 ## About us
