@@ -16,14 +16,16 @@ from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 def home(request):
     return render(request, "home.html")
 
-
+@login_required
 def mypage(request):
+    update_outdate()
     current_user = Profile.objects.get(user=request.user.pk)
     order_list   = OrderItem.objects.filter(author=current_user)
     order_list   = sorted(order_list, key=lambda target: target.order_date)
