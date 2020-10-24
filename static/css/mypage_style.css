@@ -9,7 +9,7 @@
     box-shadow: 0 10px 10px rgba(0, 0, 0 , 0.2)
 }
 
-.user_info h2, h5{
+.user_info h2, h3, h4, h5, h6{
     
     color: rgb(84,88,90);
 }
@@ -49,10 +49,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.user_status h5{
+.user_status h4{
     margin-bottom: 0px;
 }
 
@@ -128,7 +128,7 @@
 .tab_content{
     margin-left: 20vw;
     margin-right: 20vw;
-    height: 27vh;
+    min-height: 27vh;
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0 , 0.2)
 }
@@ -140,17 +140,17 @@
     border-bottom: 1px solid  rgb(84,88,90);
 }
 
-.share_history{
+.share_history , .request_history {
     display:flex;
     justify-content: space-evenly;
-    padding-top: 10px;
 }
 
-.share_history div{
-    width: 100px;
+.share_history div, .request_history div{
+    width: 200px;
+    text-align: center;
 }
 
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1600px){
 
     .user_specific img{
         display: none;
@@ -197,6 +197,10 @@
     }
 
     .tab_content{
-        height: 30vh;
+        min-height: 30vh;
+    }
+
+    .user_status_share_info, .user_status_request_info {
+        font-size: 14px;
     }
 }

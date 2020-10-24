@@ -1,4 +1,28 @@
 {% extends "base.html" %} {% load static %} {% block content %}
+<script>
+    function request() {
+        req = document.getElementById("request");
+        shared = document.getElementById("share");
+        req_f = document.getElementById("request_font");
+        share_f = document.getElementById("share_font");
+        shared.style.display = "none";
+        req.style.display = "block";
+        req_f.style.fontWeight = "bold";
+        share_f.style.fontWeight = "normal";
+    }
+
+    function share() {
+        req = document.getElementById("request");
+        shared = document.getElementById("share");
+        req_f = document.getElementById("request_font");
+        share_f = document.getElementById("share_font");
+        shared.style.display = "block";
+        req.style.display = "none";
+        req_f.style.fontWeight = "normal";
+        share_f.style.fontWeight = "bold";
+    }
+</script>
+
 <div class="pc">
     <img src="{% static 'image/mypage.png' %}" alt="" style="width: 100%;">
 </div>
@@ -9,17 +33,18 @@
     <div class="user_dashboard">
         <div class="user_specific">
             <img src="{% static 'image/krispy_logo.png' %}" alt="">
-            <h2>{{user.profile.location}}</h2>
+            <h2 style="margin-left:10px">{{user.profile.location}}</h2>
+            <h3 style="margin-left: 20px">{{user.profile.fullname}}님</h3>
         </div>
         <div class="vertical_line"></div>
         <div class="user_status">
             <div class="user_status_share_info">
-                <h5>Share 횟수</h5>
-                <h2>3</h2>
+                <h4>Share 횟수</h4>
+                <h2>{{share_list|length}}</h2>
             </div>
             <div class="user_status_request_info">
-                <h5>Request 횟수</h5>
-                <h2>5</h2>
+                <h4>Request 횟수</h4>
+                <h2>{{request_list|length}}</h2>
             </div>
         </div>
     </div>
@@ -28,58 +53,70 @@
 
 <div class="history">
     <div class="history_tab">
-        <div class="history_nav_tab1"><a href="" class="history_nav_link1">Share/Request 이력</a></div>
-        <div class="history_nav_tab2"><a href="" class="history_nav_link2">주차별 발주량</a></div>
+        <div class="history_nav_tab1"><a href="javascript:void(0);" class="history_nav_link1">Share/Request 이력</a></div>
+        <div class="history_nav_tab2"><a href="javascript:void(0);" class="history_nav_link2">주차별 발주량</a></div>
         <!-- <div class="history_nav_tab3"><a href="" class="history_nav_link3">이번주 예상 발주량</a></div> -->
     </div>
     <div class="tab_content">
         <!-- default S/R이력 -->
         <div class="history_sr">
-            <div class="share">
-                <a href=""> <b> Share 이력 </b></a>
+            <div class="share" id="share_font" style="font-weight: bold;">
+                <a href="javascript:void(0);" onclick="share()" >Share 이력</a>
             </div>
-            <div class="request">
-                <a href="">Request 이력</a>
+            <div class="request" id="request_font" style="font-weight: normal;" >
+                <a href="javascript:void(0);" onclick="request()"  >Request 이력</a>
             </div>
         </div>
 
         <div class="history_sr_detail">
             <!-- Request 이거반복 -->
-            {% for share in share_list %}
-            <div class="share_history">
-                <div class="share_complete">
-                    {% if share.outdate == False %} 미완료 {% else %} 완료 {% endif %}
+            <div id="share" style="display: block;">
+                {% for share in share_list %}
+                <div class="share_history">
+                    <div class="share_complete">
+                        <p>{% if share.outdate == False %} 미완료 {% else %} 완료 {% endif %}</p>
+                    </div>
+                    <div class="share_date">
+                        <p>{{share.dates}}</p>
+                    </div>
+                    <div class="share_item_num">
+                        <p>{{share.item}} {{share.item_num}}개</p>
+                    </div>
                 </div>
-                <div class="share_date">
-                    {{share.dates}}
-                </div>
-                <div class="share_item_num">
-                    {{share.item}} {{share.item_num}}개
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
             <!-- Request 이거반복 -->
-            {% for request in request_list %}
-            <div class="request_history">
-                <div class="request_complete">
-                    {% if request.outdate == False %} 미완료 {% else %} 완료 {% endif %}
+            <div id="request" style="display: none;">
+                {% for request in request_list %}
+                <div class="request_history">
+                    <div class="request_complete">
+                        <p>{% if request.outdate == False %} 미완료 {% else %} 완료 {% endif %}</p>
+                    </div>
+                    <div class="request_date">
+                        <p>{{request.dates}}</p>
+                    </div>
+                    <div class="request_item_num">
+                        <p>{{request.item}} {{request.item_num}}개</p>
+                    </div>
                 </div>
-                <div class="request_date">
-                    {{request.dates}}
-                </div>
-                <div class="request_item_num">
-                    {{request.item}} {{request.item_num}}개
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}            
         </div>
-        
+
     </div>
 </div>
 
 <br><br>
-<div style="display: flex; align-items: center; justify-content: center; ">
-    <button style="background-color:  rgb(84,88,90); border-radius: 5px; width: 100px; height:30px;"><a href="{% url 'logout' %}">Logout</a></button>
+
+<div style="width: 100%; display: flex; justify-content: center;">
+    <button style="
+    background-color: rgb(84,88,90);
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 17px;
+    padding: 12px 25px;"><a href="{% url 'logout' %}">Logout</a></button>
 </div>
 
 {% endblock content %}
