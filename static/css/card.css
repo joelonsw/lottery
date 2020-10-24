@@ -69,17 +69,6 @@
 	width: 100%;
 }
 
-.progress::after {
-	border-radius: 3px;
-  background-color: rgb(218, 41, 28);
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 5px;
-	width: 70%;
-}
-
 .progress-text {
 	font-size: 10px;
 	opacity: 0.6;

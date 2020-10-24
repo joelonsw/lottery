@@ -1,4 +1,47 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load for_front_time %}
+
+<script>
+    function renewtime(id, sec) {
+        // console.log(id, sec)
+        var text = document.getElementById(id);
+        var bar = document.getElementById("bar" + id);
+        if (sec > 10800) {
+            bar.style.width = "100%";
+        } else {
+            bar.style.width = (sec / 10800) * 100 + "%";
+        }
+
+        var hour = parseInt(sec / 3600);
+        var minute = parseInt((sec - hour * 3600) / 60);
+        var second = parseInt(sec - (hour * 3600) - (minute * 60));
+        // console.log(hour, minute, second);
+        if (hour < 10)
+            var strhour = "0" + hour;
+        else
+            var strhour = String(hour);
+        if (minute < 10)
+            var strminute = "0" + minute;
+        else
+            var strminute = String(minute);
+        if (second < 10)
+            var strsecond = "0" + second;
+        else
+            var strsecond = String(second);
+        text.innerHTML = strhour + ":" + strminute + ":" + strsecond + " 남음";
+        var repeat = setTimeout(function () {
+            if (sec <= 0) {
+                // console.log("끝!");
+                clearInterval(repeat);
+            }
+            else
+                renewtime(id, sec - 1);
+        }, 1000);
+    }
+</script>
+
 <div class="main">
     <div class="slideshow-container">
         <div class="mySlides fade">
@@ -15,97 +58,238 @@
     </div>
     <br>
 </div>
+
 <div style="margin-left:10vw;">
     <h1>가장 급한 Share</h1>
 </div>
-<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+{% if urgent_share_items %}
+<div class="courses-container">
     <div class="course">
         <div class="course-preview">
-            {% if urgent_items.0.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%"> {% elif urgent_items.0.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%"> {% elif urgent_items.0.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%"> {% endif %}
+            {% if urgent_share_items.0.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
-                <div class="progress"></div>
+                <div class="progress">
+                    <div id="bar{{urgent_share_items.0.pk_num}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
                 <span class="progress-text">
-                    <h5>{{urgent_items.0.limit_time}}</h5>
+                    <h5 id="{{urgent_share_items.0.pk_num}}">{{urgent_share_items.0.remain_time | hms }} 남음</h5>
                 </span>
             </div>
-            <h6>{{urgent_items.0.item}}</h6>
-            <h6>{{urgent_items.0.location}}</h6>
-            <h2>{{urgent_items.0.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' urgent_items.0.pk_num %}">제가 가져갈게요</a></button>
+            <h6>{{urgent_share_items.0.item}}</h6>
+            <h6>{{urgent_share_items.0.location}}</h6>
+            <h2>{{urgent_share_items.0.remain}}개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' urgent_share_items.0.pk_num %}">제가 가져갈게요</a></button>
         </div>
     </div>
 
+    {% if urgent_share_items.0.pk_num != urgent_share_items.1.pk_num %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_items.1.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%"> {% elif urgent_items.1.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%"> {% elif urgent_items.1.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%"> {% endif %}
+            {% if urgent_share_items.1.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
-                <div class="progress"></div>
+                <div class="progress">
+                    <div id="bar{{urgent_share_items.1.pk_num}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
                 <span class="progress-text">
-                    <h5>{{urgent_items.1.limit_time}}</h5>
+                    <h5 id="{{urgent_share_items.1.pk_num}}">{{urgent_share_items.1.remain_time | hms }} 남음</h5>
                 </span>
             </div>
-            <h6>{{urgent_items.1.item}}</h6>
-            <h6>{{urgent_items.1.location}}</h6>
-            <h2>{{urgent_items.1.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' urgent_items.1.pk_num %}">제가 가져갈게요</a></button>
+            <h6>{{urgent_share_items.1.item}}</h6>
+            <h6>{{urgent_share_items.1.location}}</h6>
+            <h2>{{urgent_share_items.1.remain}}개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' urgent_share_items.1.pk_num %}">제가 가져갈게요</a></button>
         </div>
     </div>
+    <!-- 둘이 같은 경우 -->
+    {% else %}
+    <div class="course">
+        <div class="course-preview">
+            {% if urgent_share_items.1.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress">
+                    <div id="bar{{urgent_share_items.1.pk_num|add:'50'}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
+                <span class="progress-text">
+                    <h5 id="{{urgent_share_items.1.pk_num|add:'50'}}">{{urgent_share_items.1.remain_time | hms }} 남음</h5>
+                </span>
+            </div>
+            <h6>{{urgent_share_items.1.item}}</h6>
+            <h6>{{urgent_share_items.1.location}}</h6>
+            <h2>{{urgent_share_items.1.remain}}개 남음</h2>
+            <button class="btn"><a href="{% url 'share_detail' urgent_share_items.1.pk_num %}">제가 가져갈게요</a></button>
+        </div>
+    </div>
+    {% endif %}
 </div>
+{% else %}
+<div class="pc">
+    <img src="{% static 'image/no_share_home.png' %}" alt="" style="width:100%">
+</div>
+<div class="mobile">
+    <img src="{% static 'image/no_share_mobile_home.png' %}" alt="" style="width:100%">
+</div>
+{% endif %}
 <br><br>
 <div style="margin-left:10vw;">
     <h1>가장 급한 Request</h1>
 </div>
-<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
+{% if urgent_request_items %}
+<div class="courses-container">
     <div class="course">
         <div class="course-preview">
-            {% if urgent_items.2.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%"> {% elif urgent_items.2.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%"> {% elif urgent_items.2.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%"> {% endif %}
+            {% if urgent_request_items.0.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
-                <div class="progress"></div>
+                <div class="progress">
+                    <div id="bar{{urgent_request_items.0.pk_num}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
                 <span class="progress-text">
-                    <h5>{{urgent_items.2.limit_time}}</h5>
+                    <h5 id="{{urgent_request_items.0.pk_num}}">{{urgent_request_items.0.remain_time | hms }} 남음</h5>
                 </span>
             </div>
-            <h6>{{urgent_items.2.item}}</h6>
-            <h6>{{urgent_items.2.location}}</h6>
-            <h2>{{urgent_items.2.remain}}개 부족</h2>
-            <button class="btn"><a href="{% url 'request_detail' urgent_items.2.pk_num %}">제가 드릴게요</a></button>
+            <h6>{{urgent_request_items.0.item}}</h6>
+            <h6>{{urgent_request_items.0.location}}</h6>
+            <h2>{{urgent_request_items.0.remain}}개 부족</h2>
+            <button class="btn"><a href="{% url 'request_detail' urgent_request_items.0.pk_num %}">제가 드릴게요</a></button>
         </div>
     </div>
 
+    {% if urgent_request_items.0.pk_num != urgent_request_items.1.pk_num %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_items.3.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%"> {% elif urgent_items.3.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%"> {% elif urgent_items.3.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%"> {% endif %}
+            {% if urgent_request_items.1.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
-                <div class="progress"></div>
+                <div class="progress">
+                    <div id="bar{{urgent_request_items.1.pk_num}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
                 <span class="progress-text">
-                    <h5>{{urgent_items.3.limit_time}}</h5>
+                    <h5 id="{{urgent_request_items.1.pk_num}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
                 </span>
             </div>
-            <h6>{{urgent_items.3.item}}</h6>
-            <h6>{{urgent_items.3.location}}</h6>
-            <h2>{{urgent_items.3.remain}}개 부족</h2>
-            <button class="btn"><a href="{% url 'request_detail' urgent_items.3.pk_num %}">제가 드릴게요</a></button>
+            <h6>{{urgent_request_items.1.item}}</h6>
+            <h6>{{urgent_request_items.1.location}}</h6>
+            <h2>{{urgent_request_items.1.remain}}개 부족</h2>
+            <button class="btn"><a href="{% url 'request_detail' urgent_request_items.1.pk_num %}">제가 드릴게요</a></button>
         </div>
     </div>
+    {% else %}
+    <div class="course">
+        <div class="course-preview">
+            {% if urgent_request_items.1.item == "로터스" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "아이스크림" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "초코홀릭" %}
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% endif %}
+        </div>
+        <div class="course-info">
+            <div class="progress-container">
+                <div class="progress">
+                    <div id="bar{{urgent_request_items.1.pk_num|add:50}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
+                <span class="progress-text">
+                    <h5 id="{{urgent_request_items.1.pk_num|add:50}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
+                </span>
+            </div>
+            <h6>{{urgent_request_items.1.item}}</h6>
+            <h6>{{urgent_request_items.1.location}}</h6>
+            <h2>{{urgent_request_items.1.remain}}개 부족</h2>
+            <button class="btn"><a href="{% url 'request_detail' urgent_request_items.1.pk_num %}">제가 드릴게요</a></button>
+        </div>
+    </div>    
+    {% endif %}
 </div>
+
+{% else %}
+<div>
+    <div class="pc">
+        <img src="{% static 'image/no_request_home.png' %}" alt="" style="width:100%">
+    </div>
+    <div class="mobile">
+        <img src="{% static 'image/no_request_mobile_home.png' %}" alt="" style="width:100%">
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
