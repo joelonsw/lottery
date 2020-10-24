@@ -68,42 +68,42 @@
         <div class="course-preview">
             {% if urgent_share_items.0.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.0.pk_num|add:1325}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress">
-                    <div id="bar{{urgent_share_items.0.pk_num}}" class="progress"
+                    <div id="bar{{urgent_share_items.0.pk_num|add:1325}}" class="progress"
                         style="background-color: rgb(218, 41, 28); width: 0%;"></div>
                 </div>
                 <span class="progress-text">
-                    <h5 id="{{urgent_share_items.0.pk_num}}">{{urgent_share_items.0.remain_time | hms }} 남음</h5>
+                    <h5 id="{{urgent_share_items.0.pk_num|add:1325}}">{{urgent_share_items.0.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{urgent_share_items.0.item}}</h6>
@@ -118,42 +118,42 @@
         <div class="course-preview">
             {% if urgent_share_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:7712}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress">
-                    <div id="bar{{urgent_share_items.1.pk_num}}" class="progress"
+                    <div id="bar{{urgent_share_items.1.pk_num|add:7712}}" class="progress"
                         style="background-color: rgb(218, 41, 28); width: 0%;"></div>
                 </div>
                 <span class="progress-text">
-                    <h5 id="{{urgent_share_items.1.pk_num}}">{{urgent_share_items.1.remain_time | hms }} 남음</h5>
+                    <h5 id="{{urgent_share_items.1.pk_num|add:7712}}">{{urgent_share_items.1.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{urgent_share_items.1.item}}</h6>
@@ -168,31 +168,31 @@
         <div class="course-preview">
             {% if urgent_share_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
@@ -232,42 +232,42 @@
         <div class="course-preview">
             {% if urgent_request_items.0.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.0.pk_num|add:43332}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress">
-                    <div id="bar{{urgent_request_items.0.pk_num}}" class="progress"
+                    <div id="bar{{urgent_request_items.0.pk_num|add:43332}}" class="progress"
                         style="background-color: rgb(218, 41, 28); width: 0%;"></div>
                 </div>
                 <span class="progress-text">
-                    <h5 id="{{urgent_request_items.0.pk_num}}">{{urgent_request_items.0.remain_time | hms }} 남음</h5>
+                    <h5 id="{{urgent_request_items.0.pk_num|add:43332}}">{{urgent_request_items.0.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{urgent_request_items.0.item}}</h6>
@@ -282,42 +282,42 @@
         <div class="course-preview">
             {% if urgent_request_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:6792}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress">
-                    <div id="bar{{urgent_request_items.1.pk_num}}" class="progress"
+                    <div id="bar{{urgent_request_items.1.pk_num|add:6792}}" class="progress"
                         style="background-color: rgb(218, 41, 28); width: 0%;"></div>
                 </div>
                 <span class="progress-text">
-                    <h5 id="{{urgent_request_items.1.pk_num}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
+                    <h5 id="{{urgent_request_items.1.pk_num|add:6792}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{urgent_request_items.1.item}}</h6>
@@ -331,42 +331,42 @@
         <div class="course-preview">
             {% if urgent_request_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "미니 오리지널 글레이즈드" %}
             <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "토블론 타이니" %}
             <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "캐드베리 트월" %}
             <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num|add:782}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
                 <div class="progress">
-                    <div id="bar{{urgent_request_items.1.pk_num|add:50}}" class="progress"
+                    <div id="bar{{urgent_request_items.1.pk_num|add:782}}" class="progress"
                         style="background-color: rgb(218, 41, 28); width: 0%;"></div>
                 </div>
                 <span class="progress-text">
-                    <h5 id="{{urgent_request_items.1.pk_num|add:50}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
+                    <h5 id="{{urgent_request_items.1.pk_num|add:782}}">{{urgent_request_items.1.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{urgent_request_items.1.item}}</h6>

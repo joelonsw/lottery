@@ -119,7 +119,7 @@ def share_accept(request, detail_id):
             'detail': detail,
         })
         mail_title = request.POST['location'] + "으로부터 " + detail.item + " Share 요청이 들어왔습니다."
-        mail_to = detail.email,
+        mail_to = detail.email
         email = EmailMessage(mail_title, message, to=[mail_to])
         email.send()
         return redirect(main)
@@ -155,7 +155,7 @@ def request_accept(request, detail_id):
             'detail': detail,
         })
         mail_title = request.POST['location'] + "으로부터 " + detail.item + " Request 요청이 들어왔습니다."
-        mail_to = detail.email,
+        mail_to = detail.email
         email = EmailMessage(mail_title, message, to=[mail_to])
         email.send()
         return redirect(main)    
