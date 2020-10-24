@@ -1,32 +1,37 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from lotteryapp.models import *
-import lotteryapp.utils
+from lotteryapp.utils import *
 from datetime import datetime
 # Create your views here.
 
 @login_required
-def main(request): 
+def main(request):
+    update_outdate()
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_request_list = ItemRequest.objects.filter(outdate=False)
     # urg_Request = []
     # urg_Share = []
-    urgent_items = []
+    urgent_share_items = []
+    urgent_request_items = []
 
-    if len(target_share_list) > 0 and len(target_request_list) > 0:
+    if len(target_share_list) > 0:
 
         #급한 Share 선별 1. 가장 시간이 적게 남은 Share.
-        target_share_list = sorted(target_share_list, key=lambda target: target.dates)
-        urgent_items.append(target_share_list[0])
+        target_share_list = sorted(target_share_list, key=lambda target: target.remain_time)
+        urgent_share_items.append(target_share_list[0])
         #급한 Share 선별 2. 가장 재고가 많이 남은 Share.
         target_share_list = sorted(target_share_list, key=lambda target: target.remain, reverse=True)
-        urgent_items.append(target_share_list[0])
+        urgent_share_items.append(target_share_list[0])
+    
+    if len(target_request_list) > 0:
         #급한 Request 선별 1. 가장 시간이 적게 남은 Request.
-        target_request_list = sorted(target_request_list, key=lambda target: target.dates)
-        urgent_items.append(target_request_list[0])
+        target_request_list = sorted(target_request_list, key=lambda target: target.remain_time)
+        print(target_request_list)
+        urgent_request_items.append(target_request_list[0])
         #급한 Request 선별 2. 가장 재고가 많이 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.remain, reverse=True)
-        urgent_items.append(target_request_list[0])
+        urgent_request_items.append(target_request_list[0])
 
 
         #urgent_items 리스트 업데이트
@@ -38,9 +43,8 @@ def main(request):
         #     urgent_items.append(urg_Request[i])
         # for i in range (0, len(urg_Share)):
         #     urgent_items.append(urg_Share[i])
-    
-    # print("!!!!!!!!!!!!!!!!!",urgent_items)
-    return render(request, "main.html", {'urgent_items' : urgent_items})
+
+    return render(request, "main.html", {'urgent_share_items' : urgent_share_items, 'urgent_request_items' : urgent_request_items})
 
 ##여기서 DB설계와 여기서 보여주는거 뿌리는 거는 @현준님
 
@@ -48,15 +52,22 @@ def main(request):
 # 그 후, 게시 날짜와 시간이 빠른 순서대로 정렬하여 template으로 전송합니다.
 @login_required
 def share(request):
+    update_outdate()
     target_share_list = ItemShare.objects.filter(outdate=False)
     target_share_list = sorted(target_share_list, key=lambda target: target.dates)
-    # print(type(target_share_list), "TYPE!!!!!!!!!!!!!!!")
+
+    current_user         = Profile.objects.get(user=request.user.pk)
+    share_ver_location   = sort_by_location(current_user, "share")
     return render(request, "share.html", {'shares' : target_share_list})
 
 @login_required
 def request(request):
+    update_outdate()
     target_request_list = ItemRequest.objects.filter(outdate=False)
     target_request_list = sorted(target_request_list, key=lambda target: target.dates)
+
+    current_user         = Profile.objects.get(user=request.user.pk)
+    request_ver_location = sort_by_location(current_user, "request")
     return render(request, "request.html", {'requests' : target_request_list})
 
 ##아래 주석처리한 로직을 합쳐 share_detail, request_detail에서 구현해주세요! @ 영규님
@@ -118,6 +129,7 @@ def request_accept(request, detail_id):
 # 끝
 @login_required
 def write(request):
+    update_outdate()
     return render(request, "write.html")
 
 # POST인 경우 model instance 만들고 save.

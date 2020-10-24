@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/23831bcd64.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <!--===============================================================================================-->
 </head>
 
@@ -26,8 +27,18 @@
         alert('회원가입이 성공적으로 완료되었습니다!')
     </script>
     {% endif %}
+    {% if alert == 3 %}
+    <script>
+        alert('이메일 인증이 완료되었습니다!')
+    </script>
+    {% endif %}
+    {% if alert == 4 %}
+    <script>
+        alert('이미 인증이 완료된 계정이거나 토큰이 유효하지 않습니다.')
+    </script>
+    {% endif %}
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('{% static '/image/lotteworldtower.png' %}');">
+        <div class="container-login100" style="background-image: url('{% static '/image/lotteworldtower.jpg' %}');">
             <div class="wrap-login100">
                 {% csrf_token %}
                 <span class="login100-form-logo">
@@ -43,26 +54,49 @@
                 <form class="login100-form validate-form" method="POST" action="{% url 'signin' %}">
                     {% csrf_token %}
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off"
+                            readonly onfocus="this.removeAttribute('readonly');">
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" type="password" name="password" placeholder="Password"
+                            autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
                         </button>
+                        <div class="info">
+                            <i class="fas fa-question-circle" onclick="popup()"></i>
+                        </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 
-
-    <div id="dropDownSelect1"></div>
-
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="popup()">&times;</div>
+            <h2>LOTTERY는</h2>
+            <br>
+            <p>LOTTE GRS 소속의 점주들이 이미 DB에 등록이 되어 있다고 가정하고 제작하였습니다. 
+            저희는 크리스피 크림 도넛을 예시로 선정하여 강남역, 대치역, 서울대 입구역점, 유니스트점 점주들 간의 재고 나눔 서비스를 기획하였습니다. 
+            <br>
+            서비스 이용을 위해서는 로그인 창 위의 롯데 마크를 선택해 회원가입을 진행해 주시거나, 
+            강남역 점주로써 서비스를 사용하실 수 있게 ID와 Password를 제공해드리겠습니다. 
+            <br>
+            ID: kangnam
+            PW: kangnam123
+            </p>
+        </div>
+    </div>
+    <script>
+        function popup() {
+            document.getElementById('popup-1').classList.toggle("active");
+        }
+    </script>
 
 </body>
 

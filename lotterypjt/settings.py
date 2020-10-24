@@ -130,3 +130,11 @@ STATICFILES_DIRS = [
 #Deploy할때, 흩어져있는 static파일을 특정 디렉토리에 옮기기
 #manage.py collectstatic 필수
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# 이메일 인증
+EMAIL_HOST = 'smtp.gmail.com' 		         # 메일 호스트 서버
+EMAIL_PORT = '587' 			                 # 서버 포트
+EMAIL_HOST_USER = '너의아이디는@gmail.com'    # 우리가 사용할 Gmail
+EMAIL_HOST_PASSWORD = '너의비밀번호는'		 # 우리가 사용할 Gmail p
+EMAIL_USE_TLS = True			             # TLS 보안 설정
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER	     # 응답 메일 관련 설정

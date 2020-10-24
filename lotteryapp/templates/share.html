@@ -1,35 +1,103 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div>
+{% load for_front_time %}
+
+<script>
+    function renewtime(id, sec){
+        // console.log(id, sec)
+        var text = document.getElementById(id);
+        var bar = document.getElementById("bar"+id);
+        if(sec>10800){
+            bar.style.width = "100%";
+        }else{
+            bar.style.width = (sec/10800)*100 + "%";
+        }
+
+        var hour = parseInt(sec/3600);
+        var minute = parseInt((sec-hour*3600)/60);
+        var second = parseInt(sec-(hour*3600)-(minute*60));
+        // console.log(hour, minute, second);
+        if(hour<10)
+            var strhour = "0"+hour;
+        else
+            var strhour = String(hour);
+        if(minute<10)
+            var strminute = "0"+minute;
+        else
+            var strminute = String(minute);
+        if(second<10)
+            var strsecond = "0"+second;
+        else
+            var strsecond = String(second);
+        text.innerHTML = strhour + ":" + strminute + ":" + strsecond + " 남음";
+        var repeat = setTimeout(function() {
+            if(sec <= 0){
+                // console.log("끝!");
+                clearInterval(repeat);
+            }
+            else
+                renewtime(id, sec-1);
+        }, 1000);
+    }
+</script>
+
+<div class="pc">
     <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
 </div>
-
-<div class="courses-container" style="min-height: calc(100vh-68px-235px);">
-    {% for share in shares %}
-    <div class="course">
-        <div class="course-preview">
-            {% if share.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-            {% elif share.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
-            {% elif share.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
-            {% endif %}
-        </div>
-        <div class="course-info">
-            <div class="progress-container">
-                <div class="progress"></div>
-                <span class="progress-text">
-                    <h5>{{share.limit_time}}</h5>
-                </span>
-            </div>
-            <h6>{{share.item}}</h6>
-            <h6>{{share.location}}</h6>
-            <h2>{{share.remain}}개 남음</h2>
-            <button class="btn"><a href="{% url 'share_detail' share.pk_num %}">제가 가져갈게요</a></button>
-        </div>
-    </div>
-    {% endfor %}
+<div class="mobile">
+    <img src="{% static 'image/mobile_share_pic.png' %}" alt="" style="width: 100%;">
 </div>
+<div style="min-height: 45vh;">
+    <div class="courses-container">
+        {% if shares %}
+        {% for share in shares %}
+        <div class="course">
+            <div class="course-preview">
+                {% if share.item == "로터스" %}
+                <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )" style="width:100%">
+                {% elif share.item == "아이스크림" %}
+                <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% elif share.item == "초코홀릭" %}
+                <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% endif %}
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress">
+                        <div id="bar{{share.pk_num}}" class="progress" style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                    </div>
+                    <span class="progress-text">
+                    <h5 id="{{share.pk_num}}">{{share.remain_time | hms }} 남음</h5>
+                    </span>
+                </div>
+                <h6>{{share.item}}</h6>
+                <h6>{{share.location}}</h6>
+                <h2>{{share.remain}}개 남음</h2>
+                <button class="btn"><a href="{% url 'share_detail' share.pk_num %}">제가 가져갈게요</a></button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="pc">
+            <img src="{% static 'image/no_share_pc.png' %}" alt="" style="width:100%">
+        </div>
+        <div class="mobile">
+            <img src="{% static 'image/no_share_mobile.png' %}" alt="" style="width:100%">
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center;">
+            <button style="
+            background-color: rgb(218, 41, 28);
+            border: 0;
+            border-radius: 50px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 17px;
+            padding: 12px 25px;"><a href="{% url 'write_request' %}">Request 작성하러 가기!</a></button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
 {% endblock content %}

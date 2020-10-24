@@ -1,0 +1,4 @@
+.input:focus, 
+.custom_select select:focus{
+    border: 1px solid rgb(218, 41, 28) !important;
+}
