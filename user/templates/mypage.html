@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="pc">
     <img src="{% static 'image/mypage.png' %}" alt="" style="width: 100%;">
 </div>
@@ -47,21 +45,19 @@
 
         <div class="history_sr_detail">
             <!-- 이거반복 -->
+            {% for share in share_list %}
             <div class="share_history">
-                <div class="share_complete">미완료</div>
-                <div class="share_date">2020.09.28</div>
-                <div class="share_item_num">로터스 100개</div>
+                <div class="share_complete">
+                    {% if share.outdate == False %} 미완료 {% else %} 완료 {% endif %}
+                </div>
+                <div class="share_date">
+                    {{share.dates}}
+                </div>
+                <div class="share_item_num">
+                    {{share.item}} {{share.item_num}}개
+                </div>
             </div>
-            <div class="share_history">
-                <div class="share_complete">완료</div>
-                <div class="share_date">2020.09.29</div>
-                <div class="share_item_num">로터스 30개</div>
-            </div>
-            <div class="share_history">
-                <div class="share_complete">완료</div>
-                <div class="share_date">2020.09.30</div>
-                <div class="share_item_num">초코홀릭 50개</div>
-            </div>
+            {% endfor %}
         </div>
 
     </div>

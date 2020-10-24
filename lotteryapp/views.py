@@ -33,7 +33,6 @@ def main(request):
     if len(target_request_list) > 0:
         #급한 Request 선별 1. 가장 시간이 적게 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.remain_time)
-        print(target_request_list)
         urgent_request_items.append(target_request_list[0])
         #급한 Request 선별 2. 가장 재고가 많이 남은 Request.
         target_request_list = sorted(target_request_list, key=lambda target: target.remain, reverse=True)

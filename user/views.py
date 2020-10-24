@@ -6,7 +6,8 @@ from lotteryapp.models import *
 from lotteryapp.mlmodule import *
 from lotteryapp.utils import *
 import numpy as np
-from lotteryapp.utils import get_location_coordinate
+from lotteryapp.utils import *
+from datetime import datetime
 
 # SMTP 관련 인증
 from django.contrib.sites.shortcuts import get_current_site
@@ -30,9 +31,38 @@ def mypage(request):
     share_list   = sorted(share_list, key=lambda target: target.dates)
     request_list = ItemRequest.objects.filter(author=current_user)
     request_list = sorted(request_list, key=lambda target: target.dates)
+    today        = datetime.now()
 
-    #calibrate_RS_data(current_user, "로터스")
-    return render(request, "mypage.html", {"order_list" : order_list, "share_list" : share_list, "request_list" : request_list})
+    ml_returning = {}
+
+    for item in whole_item:
+        status = ""
+        ml_model = LinearFitting(item)
+        processed = calibrate_RS_data(current_user, item)
+
+        if len(processed) > 0:
+            ml_model.get_line_from_data(processed)
+            try:
+                today_order = OrderItem.objects.filter(author=current_user).filter(item_name=item).get(order_date=today)
+                prediction = ml_model.fitting(today_order.item_num)
+
+                if prediction < today_order.item_num / 100 * 5 and prediction > today_order.item_num / 100 * (-5):
+                    status = "적정"
+                elif prediction >= today_order.item_num / 100 * 5:
+                    status = "과잉"
+                else:
+                    status = "부족"
+
+                if ml_model.slope != 0.0:
+                    tomorrow = int((-1) * ml_model.intercept / ml_model.slope)
+                else:
+                    tomorrow = 0
+                
+                ml_returning[item] = {"status" : status, "tomorrow" : tomorrow}
+            except OrderItem.DoesNotExist:
+                pass
+
+    return render(request, "mypage.html", {"order_list" : order_list, "share_list" : share_list, "request_list" : request_list, "ml_returning" : ml_returning})
 
 
 def signup(request):

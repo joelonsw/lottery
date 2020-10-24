@@ -2,11 +2,14 @@ from .models import *
 from datetime import datetime
 import numpy as np
 
+whole_item = ["로투스 비스코프", "초코홀릭", "토블론 타이니", "리고 피넛버터", "캐드베리 트월"]
+
 # 현재 시간과 비교해서 유효한 시간을 갖는지 검사합니다.
 # 유효한 시간이 아니면 False를, 아직 유효하다면 True를 반환합니다.
 # ex1) 생성된 model이 2020-10-09에 생성되었고, 현재 날짜가 2020-10-10이면 유효하지 않습니다. -> False
 # ex2) 생성된 model이 2020-10-09 8시에 생성되었고, 10시까지 게시한다고 했을때,
-# 현재 시간이 2020-10-09 9시이면 유효합니다. -> True
+# 현재 시간이 2020-10-09 9시이면 유효합니다. -> 
+
 def time_vaild_check(target):
     now_time = datetime.now()
 
@@ -61,11 +64,12 @@ def update_remain(num, target):
 # ML module에 들어가기 전에 필요합니다.
 # 현재 유저와 정리할 item 이름을 parameter로 받습니다.
 def calibrate_RS_data(current_user, item):
-    order_list   = OrderItem.objects.filter(author=current_user).filter(item_name=item)
+    today = datetime.now()
+    order_list = OrderItem.objects.filter(author=current_user).filter(item_name=item).exclude(order_date=today)
 
     # 만약 발주 내역이 10일 미만인 경우 데이터가 충분하지 않은 것으로 판단합니다.
     if len(order_list) < 10:
-        return None
+        return []
 
     result = []
 
@@ -89,8 +93,8 @@ def calibrate_RS_data(current_user, item):
         diff = share_num - request_num
         result.append([order.item_num, diff])
 
-    print(result)
     return np.array(result)
+
 # Google API를 이용해 주소를 파라미터로 받으면 위도/경도로 변환해주는 함수입니다.
 # requests 모듈이 추가적으로 필요합니다. (urllib는 python3 기준으로 자동 탑재)
 # (Google API가 네이버나 카카오에 비해 파싱을 더 잘 한다고 합니다.)

@@ -36,6 +36,8 @@ class LinearFitting:
     # parameter로 위 함수의 return 배열이 필요합니다.
     # 학습이 완료되면 slope와 intercept를 저장합니다.
     def get_line_from_data(self, data):
+        if len(data) == 0:
+            return
         m, n = data.shape
         A = np.array([data[:,0], np.ones(m)]).T
         b = data[:, 1] 
