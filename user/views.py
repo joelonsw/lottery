@@ -54,12 +54,8 @@ def mypage(request):
                     status = "과잉"
                 else:
                     status = "부족"
-
-                if ml_model.slope != 0.0:
-                    tomorrow = int((-1) * ml_model.intercept / ml_model.slope)
-                else:
-                    tomorrow = 0
                 
+                tomorrow = today_order.item_num
                 ml_returning[item] = {"status" : status, "tomorrow" : tomorrow}
             except OrderItem.DoesNotExist:
                 pass
