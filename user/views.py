@@ -39,7 +39,7 @@ def signup(request):
     if request.method == "POST":
         if request.POST['password'] == request.POST['password_confirm']:
             filled_form = UserForm(request.POST)
-            if request.POST['location'] is not "":
+            if request.POST['location'] != "":
                 if filled_form.is_valid():
                     user = User.objects.create_user(username=request.POST['username'], password = request.POST['password'], email = request.POST['email'])
                     user.profile.fullname = request.POST['fullname']

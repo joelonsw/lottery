@@ -4,6 +4,12 @@ from lotteryapp.models import *
 from lotteryapp.utils import *
 from datetime import datetime
 # Create your views here.
+# 이메일
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes, force_text
 
 @login_required
 def main(request):
@@ -102,6 +108,21 @@ def share_accept(request, detail_id):
         share_accept_object.save()
         detail.remain = detail.remain-int(request.POST['num'])
         detail.save()
+
+        # share 이메일 보내기
+        current_site = get_current_site(request)
+        message = render_to_string('share_email.html', {
+            'user': detail.author,
+            'request_user': request.user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(request.user.pk)),
+            'share': share_accept_object,
+            'detail': detail,
+        })
+        mail_title = request.POST['location'] + "으로부터 " + detail.item + " Share 요청이 들어왔습니다."
+        mail_to = detail.email,
+        email = EmailMessage(mail_title, message, to=[mail_to])
+        email.send()
         return redirect(main)
     return redirect(share_detail, detail_id)
 
@@ -123,9 +144,23 @@ def request_accept(request, detail_id):
         request_accept_object.save()
         detail.remain = detail.remain-int(request.POST['num'])
         detail.save()
+
+        # request 이메일 보내기
+        current_site = get_current_site(request)
+        message = render_to_string('request_email.html', {
+            'user': detail.author,
+            'request_user': request.user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(request.user.pk)),
+            'request': request_accept_object,
+            'detail': detail,
+        })
+        mail_title = request.POST['location'] + "으로부터 " + detail.item + " Request 요청이 들어왔습니다."
+        mail_to = detail.email,
+        email = EmailMessage(mail_title, message, to=[mail_to])
+        email.send()
         return redirect(main)    
     return redirect(share_detail, detail_id)
-
 # 끝
 @login_required
 def write(request):
