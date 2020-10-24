@@ -1,6 +1,9 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<div class="write_picture">
+<div class="pc">
     <img src="{% static 'image/write_pic.png' %}" alt="" style="width:100%">
+</div>
+<div class="mobile">
+    <img src="{% static 'image/mobile_write_pic.png' %}" alt="" style="width: 100%;">
 </div>
 
 <div class="wrapper">
@@ -20,9 +23,13 @@
                 <div class="custom_select">
                     <select id="item" name="item" required>
                         <option value="">선택</option>
-                        <option value="로터스">로터스</option>
-                        <option value="아이스크림">아이스크림</option>
+                        <option value="로투스 비스코프">로투스 비스코프</option>
+                        <option value="아이스크림 인사이드 리고 피넛버터">아이스크림 인사이드 리고 피넛버터</option>
+                        <option value="미니 오리지널 글레이즈드">미니 오리지널 글레이즈드</option>
                         <option value="초코홀릭">초코홀릭</option>
+                        <option value="토블론 타이니">토블론 타이니</option>
+                        <option value="리고 피넛버터">리고 피넛버터</option>
+                        <option value="캐드베리 트월">캐드베리 트월</option>
                     </select>
                 </div>
             </div>

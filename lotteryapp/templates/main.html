@@ -66,16 +66,32 @@
 <div class="courses-container">
     <div class="course">
         <div class="course-preview">
-            {% if urgent_share_items.0.item == "로터스" %}
+            {% if urgent_share_items.0.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_share_items.0.item == "아이스크림" %}
+            {% elif urgent_share_items.0.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.0.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.0.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.0.pk_num}}' , '{{urgent_share_items.0.remain_time}}' )"
                 style="width:100%">
             {% endif %}
@@ -100,16 +116,32 @@
     {% if urgent_share_items.0.pk_num != urgent_share_items.1.pk_num %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_share_items.1.item == "로터스" %}
+            {% if urgent_share_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_share_items.1.item == "아이스크림" %}
+            {% elif urgent_share_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
                 onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
@@ -134,17 +166,33 @@
     {% else %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_share_items.1.item == "로터스" %}
+            {% if urgent_share_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_share_items.1.item == "아이스크림" %}
+            {% elif urgent_share_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_share_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_share_items.1.pk_num|add:50}}' , '{{urgent_share_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_share_items.1.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
+                onload="renewtime( '{{urgent_share_items.1.pk_num}}' , '{{urgent_share_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>
@@ -182,16 +230,32 @@
 <div class="courses-container">
     <div class="course">
         <div class="course-preview">
-            {% if urgent_request_items.0.item == "로터스" %}
+            {% if urgent_request_items.0.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_request_items.0.item == "아이스크림" %}
+            {% elif urgent_request_items.0.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.0.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.0.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.0.pk_num}}' , '{{urgent_request_items.0.remain_time}}' )"
                 style="width:100%">
             {% endif %}
@@ -216,16 +280,32 @@
     {% if urgent_request_items.0.pk_num != urgent_request_items.1.pk_num %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_request_items.1.item == "로터스" %}
+            {% if urgent_request_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_request_items.1.item == "아이스크림" %}
+            {% elif urgent_request_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
                 onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
@@ -249,17 +329,33 @@
     {% else %}
     <div class="course">
         <div class="course-preview">
-            {% if urgent_request_items.1.item == "로터스" %}
+            {% if urgent_request_items.1.item == "로투스 비스코프" %}
             <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
-            {% elif urgent_request_items.1.item == "아이스크림" %}
+            {% elif urgent_request_items.1.item == "아이스크림 인사이드 리고 피넛버터" %}
             <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% elif urgent_request_items.1.item == "초코홀릭" %}
             <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""
-                onload="renewtime( '{{urgent_request_items.1.pk_num|add:50}}' , '{{urgent_request_items.1.remain_time}}' )"
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
+                style="width:100%">
+            {% elif urgent_request_items.1.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""
+                onload="renewtime( '{{urgent_request_items.1.pk_num}}' , '{{urgent_request_items.1.remain_time}}' )"
                 style="width:100%">
             {% endif %}
         </div>

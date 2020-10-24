@@ -1,4 +1,16 @@
+<<<<<<< Updated upstream
 {% extends "base.html" %} {% load static %} {% block content %}
+=======
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="pc">
+    <img src="{% static 'image/mypage.png' %}" alt="" style="width: 100%;">
+</div>
+<div class="mobile">
+    <img src="{% static 'image/mypage_mobile.png' %}" alt="" style="width: 100%;">
+</div>
+>>>>>>> Stashed changes
 <div class="user_info">
     <div class="user_dashboard">
         <div class="user_specific">
@@ -18,6 +30,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="history">
     <div class="history_tab">

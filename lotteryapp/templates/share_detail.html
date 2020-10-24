@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% load for_front_time %}
+
 <!-- 지도 스타일 -->
 <style>
     #map {
@@ -8,6 +10,46 @@
         width: 700px;
     }
 </style>
+
+<script>
+    function renewtime(id, sec) {
+        // console.log(id, sec)
+        var text = document.getElementById(id);
+        var bar = document.getElementById("bar" + id);
+        if (sec > 10800) {
+            bar.style.width = "100%";
+        } else {
+            bar.style.width = (sec / 10800) * 100 + "%";
+        }
+
+        var hour = parseInt(sec / 3600);
+        var minute = parseInt((sec - hour * 3600) / 60);
+        var second = parseInt(sec - (hour * 3600) - (minute * 60));
+        // console.log(hour, minute, second);
+        if (hour < 10)
+            var strhour = "0" + hour;
+        else
+            var strhour = String(hour);
+        if (minute < 10)
+            var strminute = "0" + minute;
+        else
+            var strminute = String(minute);
+        if (second < 10)
+            var strsecond = "0" + second;
+        else
+            var strsecond = String(second);
+        text.innerHTML = strhour + ":" + strminute + ":" + strsecond + " 남음";
+        var repeat = setTimeout(function () {
+            if (sec <= 0) {
+                // console.log("끝!");
+                clearInterval(repeat);
+            }
+            else
+                renewtime(id, sec - 1);
+        }, 1000);
+    }
+
+</script>
 
 <div class="pc">
     <img src="{% static 'image/share_pic.png' %}" alt="" style="width: 100%;">
@@ -19,19 +61,30 @@
 <div class="courses-container">
     <div class="course" style="width:800px;">
         <div class="course-preview">
-            {% if detail.item == "로터스" %}
-            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" style="width:100%">
-            {% elif detail.item == "아이스크림" %}
-            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" style="width:100%">
+            {% if detail.item == "로투스 비스코프" %}
+            <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
+            {% elif detail.item == "아이스크림 인사이드 리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
             {% elif detail.item == "초코홀릭" %}
-            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" style="width:100%">
+            <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
+            {% elif detail.item == "미니 오리지널 글레이즈드" %}
+            <img id="getpic" src="{% static 'image/donut/original.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
+            {% elif detail.item == "토블론 타이니" %}
+            <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
+            {% elif detail.item == "리고 피넛버터" %}
+            <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
+            {% elif detail.item == "캐드베리 트월" %}
+            <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt="" onload="renewtime( '{{detail.pk_num}}' , '{{detail.remain_time}}' )" style="width:100%">
             {% endif %}
         </div>
         <div class="course-info">
             <div class="progress-container">
-                <div class="progress"></div>
+                <div class="progress">
+                    <div id="bar{{detail.pk_num}}" class="progress"
+                        style="background-color: rgb(218, 41, 28); width: 0%;"></div>
+                </div>
                 <span class="progress-text">
-                    <h5>{{ detail.limit_time }}</h5>
+                    <h5 id="{{detail.pk_num}}">{{detail.remain_time | hms }} 남음</h5>
                 </span>
             </div>
             <h6>{{detail.item}}</h6>
@@ -50,20 +103,20 @@
 </div>
 <script>
     let map;
-    var loc_lat = parseFloat({{detail.author.latitude}});
-    var loc_lng = parseFloat({{detail.author.longitude}});
+    var loc_lat = parseFloat({{ detail.author.latitude }});
+    var loc_lng = parseFloat({{ detail.author.longitude }});
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: loc_lat, lng: loc_lng },
-        zoom: 18,
-    });
+            center: { lat: loc_lat, lng: loc_lng },
+            zoom: 18,
+        });
 
-    // 마커 표시
-    const marker = new google.maps.Marker({
-        position: { lat: loc_lat, lng: loc_lng },
-        map: map,
-    });
+        // 마커 표시
+        const marker = new google.maps.Marker({
+            position: { lat: loc_lat, lng: loc_lng },
+            map: map,
+        });
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHDqJNPiWkR0Tl5Hp1HZ11qY6aoyv3V28&callback=initMap" async
@@ -84,7 +137,7 @@
             </div>
             <div class="input_field">
                 <label for="">요청할 갯수</label>
-                <input type="number" class="input" min="1" id="number" name="num" required>
+                <input type="number" class="input" min="1" max= "{{detail.remain}}" id="number" name="num" required>
             </div>
             <!-- <div class="input_field">
                 <label for="">예상 픽업 시간</label>
@@ -103,9 +156,15 @@
                 <label for="">요청 사항</label>
                 <textarea class="textarea" name="content"></textarea>
             </div>
+            {% if user.profile.location == detail.location %}
+            <div class="input_field">
+                <input type="submit" value="본인 지점은 불가해요" class="btn" disabled> 
+            </div>
+            {% else %}
             <div class="input_field">
                 <input type="submit" value="제가 가져갈게요" class="btn">
             </div>
+            {% endif %}
         </form>
     </div>
 </div>
