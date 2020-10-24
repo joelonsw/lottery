@@ -1,4 +1,4 @@
-# LOTTERY
+# LOTTERY([바로가기](http://www.lottery-unist.ml))
 ## UNIST-멋사 2020 해커톤
 -----
 ## About us
@@ -10,7 +10,7 @@
 | 정현준 | 백엔드 | with1015@unist.ac.kr |
 | 복영규 | 백엔드 | duckbankbok@unist.ac.kr |
 
-### LOTTERY([바로가기](www.lottery-unist.ml))
+### LOTTERY
 #### LOTTERY란?
 LOTTERY란 식품 코너의 라스트 오더에서 기인하여 남는 재고를 점주들끼리 실시간으로 거래하여 재고를 줄이는 웹 서비스입니다. LOTTERY는 점주들에겐 재고처리의 도움을 주고 손님들에겐 자신이 사고 싶은 제품이 가장 가까운 매장에서 품절이 되는 일이 없도록 도와줍니다. 뿐만 아니라 LOTTERY는 간단한 기계 학습을 통해 미래의 발주량을 예측해 점주들이 발주를 하는데 도움을 줍니다.
 
