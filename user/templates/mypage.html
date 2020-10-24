@@ -44,7 +44,7 @@
         </div>
 
         <div class="history_sr_detail">
-            <!-- 이거반복 -->
+            <!-- Request 이거반복 -->
             {% for share in share_list %}
             <div class="share_history">
                 <div class="share_complete">
@@ -58,8 +58,22 @@
                 </div>
             </div>
             {% endfor %}
+            <!-- Request 이거반복 -->
+            {% for request in request_list %}
+            <div class="request_history">
+                <div class="request_complete">
+                    {% if request.outdate == False %} 미완료 {% else %} 완료 {% endif %}
+                </div>
+                <div class="request_date">
+                    {{request.dates}}
+                </div>
+                <div class="request_item_num">
+                    {{request.item}} {{request.item_num}}개
+                </div>
+            </div>
+            {% endfor %}            
         </div>
-
+        
     </div>
 </div>
 
