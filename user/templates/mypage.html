@@ -21,6 +21,67 @@
         req_f.style.fontWeight = "normal";
         share_f.style.fontWeight = "bold";
     }
+
+    function baljoo() {
+        sr_show = document.getElementById("sr_show");
+        baljoo_show = document.getElementById("baljoo_show");
+        sr_show.style.display = "none";
+        baljoo_show.style.display = "block";
+        baljootab = document.getElementById("baljootab");
+        srtab = document.getElementById("srtab");
+        baljootabword = document.getElementById("baljootabword");
+        srtabword = document.getElementById("srtabword");
+        baljootab.style.backgroundColor = "rgb(84,88,90)";
+        baljootab.style.borderTopLeftRadius = "10px";
+        baljootab.style.borderTopRightRadius = "10px";
+        baljootabword.style.color = "white";
+        baljootabword.style.fontWeight = "Bold";
+        srtab.style.backgroundColor = "white";
+        srtabword.style.color = "rgb(84,88,90)";
+        srtabword.style.fontWeight = "normal";
+    }
+
+    function sr() {
+        sr_show = document.getElementById("sr_show");
+        baljoo_show = document.getElementById("baljoo_show");
+        sr_show.style.display = "block";
+        baljoo_show.style.display = "none";
+        baljootab = document.getElementById("baljootab");
+        srtab = document.getElementById("srtab");
+        baljootabword = document.getElementById("baljootabword");
+        srtabword = document.getElementById("srtabword");
+        srtab.style.backgroundColor = "rgb(84,88,90)";
+        srtab.style.borderTopLeftRadius = "10px";
+        srtab.style.borderTopRightRadius = "10px";
+        srtabword.style.color = "white";
+        srtabword.style.fontWeight = "Bold";
+        baljootab.style.backgroundColor = "white";
+        baljootabword.style.color = "rgb(84,88,90)";
+        baljootabword.style.fontWeight = "normal";
+    }
+
+    function baljooexpect() {
+        expect_f = document.getElementById("expect_font");
+        hist_f = document.getElementById("hist_font");
+        baljoohistory = document.getElementById("baljoohistory");
+        baljooexpectation = document.getElementById("baljooexpectation");
+        baljoohistory.style.display = "none";
+        baljooexpectation.style.display = "block";
+        expect_f.style.fontWeight = "bold";
+        hist_f.style.fontWeight = "normal";
+    }
+
+    function baljoohist() {
+        expect_f = document.getElementById("expect_font");
+        hist_f = document.getElementById("hist_font");
+        expect_f.style.fontWeight = "normal";
+        hist_f.style.fontWeight = "bold";
+        baljoohistory = document.getElementById("baljoohistory");
+        baljooexpectation = document.getElementById("baljooexpectation");
+        baljoohistory.style.display = "block";
+        baljooexpectation.style.display = "none";
+    }
+
 </script>
 
 <div class="pc">
@@ -53,18 +114,20 @@
 
 <div class="history">
     <div class="history_tab">
-        <div class="history_nav_tab1"><a href="javascript:void(0);" class="history_nav_link1">Share/Request 이력</a></div>
-        <div class="history_nav_tab2"><a href="javascript:void(0);" class="history_nav_link2">주차별 발주량</a></div>
+        <div class="history_nav_tab1" id="srtab"><a id="srtabword" href="javascript:void(0);" class="history_nav_link1"
+                onclick="sr()">Share/Request 이력</a></div>
+        <div class="history_nav_tab2" id="baljootab"><a id="baljootabword" href="javascript:void(0);"
+                class="history_nav_link2" onclick="baljoo()">{{user.profile.location}} 발주량</a></div>
         <!-- <div class="history_nav_tab3"><a href="" class="history_nav_link3">이번주 예상 발주량</a></div> -->
     </div>
-    <div class="tab_content">
+    <div class="tab_content" id="sr_show">
         <!-- default S/R이력 -->
         <div class="history_sr">
             <div class="share" id="share_font" style="font-weight: bold;">
-                <a href="javascript:void(0);" onclick="share()" >Share 이력</a>
+                <a href="javascript:void(0);" onclick="share()">Share 이력</a>
             </div>
-            <div class="request" id="request_font" style="font-weight: normal;" >
-                <a href="javascript:void(0);" onclick="request()"  >Request 이력</a>
+            <div class="request" id="request_font" style="font-weight: normal;">
+                <a href="javascript:void(0);" onclick="request()">Request 이력</a>
             </div>
         </div>
 
@@ -102,7 +165,51 @@
                 {% endfor %}
             </div>
         </div>
+    </div>
 
+    <div class="tab_content" id="baljoo_show" style="display:none;">
+        <div class="history_sr">
+            <div class="share" id="hist_font" style="font-weight: bold;">
+                <a href="javascript:void(0);" onclick="baljoohist()">발주 기록</a>
+            </div>
+            <div class="request" id="expect_font" style="font-weight: normal;">
+                <a href="javascript:void(0);" onclick="baljooexpect()">발주 예상</a>
+            </div>
+        </div>
+        <div class="history_sr_detail">
+            <!-- Request 이거반복 -->
+            <div id="baljoohistory" style="display: block;">
+                {% for order in order_list %}
+                <div class="share_history">
+                    <div class="share_complete">
+                        <p>{{order.item_name}}</p>
+                    </div>
+                    <div class="share_date">
+                        <p>{{order.order_date}}</p>
+                    </div>
+                    <div class="share_item_num">
+                        <p>{{order.item_num}}개</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Request 이거반복 -->
+            <div id="baljooexpectation" style="display: none;">
+                {% for ml in ml_returning %}
+                <div class="request_history">
+                    <div class="request_complete">
+                        <p>{{ml}}</p>
+                    </div>
+                    <div class="request_date">
+                        <p>{{ml}}</p>
+                    </div>
+                    <div class="request_item_num">
+                        <p>{{ml}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 

@@ -90,6 +90,7 @@
 
 .history_nav_tab1 a{
     color:white;
+    font-weight:bold;
 }
 
 .history_nav_tab2{
@@ -104,12 +105,10 @@
     color: rgb(84,88,90);
 }
 
-.history_nav_tab2 a:hover{
+.history_nav_tab1, .history_nav_tab2 a:hover{
     font-weight: bold;
 }
-.history_nav_tab3 a:hover{
-    font-weight: bold;
-}
+
 
 
 
