@@ -54,12 +54,20 @@
         {% for share in shares %}
         <div class="course">
             <div class="course-preview">
-                {% if share.item == "로터스" %}
+                {% if share.item == "로투스 비스코프" %}
                 <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )" style="width:100%">
-                {% elif share.item == "아이스크림" %}
+                {% elif share.item == "아이스크림 인사이드 리고 피넛버터" %}
                 <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
                 {% elif share.item == "초코홀릭" %}
                 <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% elif share.item == "미니 오리지널 글레이즈드" %}
+                <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% elif share.item == "토블론 타이니" %}
+                <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% elif share.item == "리고 피넛버터" %}
+                <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
+                {% elif share.item == "캐드베리 트월" %}
+                <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""  onload="renewtime( '{{share.pk_num}}' , '{{share.remain_time}}' )"  style="width:100%">
                 {% endif %}
             </div>
             <div class="course-info">

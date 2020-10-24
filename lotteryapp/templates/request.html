@@ -54,12 +54,20 @@
         {% for request in requests %}
         <div class="course">
             <div class="course-preview">
-                {% if request.item == "로터스" %}
-                <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt="" onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )" style="width:100%">
-                {% elif request.item == "아이스크림" %}
-                <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt="" onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )" style="width:100%">
+                {% if request.item == "로투스 비스코프" %}
+                <img id="getpic" src="{% static 'image/donut/lotus.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )" style="width:100%">
+                {% elif request.item == "아이스크림 인사이드 리고 피넛버터" %}
+                <img id="getpic" src="{% static 'image/donut/icecream.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
                 {% elif request.item == "초코홀릭" %}
-                <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt="" onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )" style="width:100%">
+                <img id="getpic" src="{% static 'image/donut/chocoholic.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
+                {% elif request.item == "미니 오리지널 글레이즈드" %}
+                <img id="getpic" src="{% static 'image/donut/original.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
+                {% elif request.item == "토블론 타이니" %}
+                <img id="getpic" src="{% static 'image/donut/toblerone.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
+                {% elif request.item == "리고 피넛버터" %}
+                <img id="getpic" src="{% static 'image/donut/ligo.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
+                {% elif request.item == "캐드베리 트월" %}
+                <img id="getpic" src="{% static 'image/donut/cadbury.png' %}" alt=""  onload="renewtime( '{{request.pk_num}}' , '{{request.remain_time}}' )"  style="width:100%">
                 {% endif %}
             </div>
             <div class="course-info">
