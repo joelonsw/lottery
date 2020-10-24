@@ -170,10 +170,10 @@
     <div class="tab_content" id="baljoo_show" style="display:none;">
         <div class="history_sr">
             <div class="share" id="hist_font" style="font-weight: bold;">
-                <a href="javascript:void(0);" onclick="baljoohist()">발주 기록</a>
+                <a href="javascript:void(0);" onclick="baljoohist()">발주량 기록</a>
             </div>
             <div class="request" id="expect_font" style="font-weight: normal;">
-                <a href="javascript:void(0);" onclick="baljooexpect()">발주 예상</a>
+                <a href="javascript:void(0);" onclick="baljooexpect()">발주량 예상</a>
             </div>
         </div>
         <div class="history_sr_detail">
@@ -195,19 +195,26 @@
             </div>
             <!-- Request 이거반복 -->
             <div id="baljooexpectation" style="display: none;">
-                {% for ml in ml_returning %}
+                {% for ml, mlinfos in ml_returning.items %}
                 <div class="request_history">
                     <div class="request_complete">
                         <p>{{ml}}</p>
                     </div>
-                    <div class="request_date">
-                        <p>{{ml}}</p>
-                    </div>
                     <div class="request_item_num">
-                        <p>{{ml}}</p>
+                        {% if mlinfos.status == "적정" %}
+                        <p><b style="color:mediumblue">{{mlinfos.status}}</b> 수준의 발주입니다</p>
+                        {% elif mlinfos.status == "부족" %}
+                        <p><b style="color:gold">{{mlinfos.status}}</b> 수준의 발주입니다</p>
+                        <!-- 과잉 -->
+                        {% else %}
+                        <p><b style="color:red">{{mlinfos.status}}</b> 수준의 발주입니다</p>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
+                <div class="mlinfo">
+                    <i class="fas fa-question-circle" onclick="popup()"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -225,5 +232,114 @@
     font-size: 17px;
     padding: 12px 25px;"><a href="{% url 'logout' %}">Logout</a></button>
 </div>
+
+<div class="popup" id="popup-1">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" onclick="popup()">&times;</div>
+        <h2>"발주량 예상" 메뉴는</h2>
+        <p>
+            점주님의 Share/Request 기록과 발주 기록을 토대로 데이터를 분석하고 예측합니다. <br>
+            분석과 예측에는 Linear Regression을 이용한 간단한 머신러닝 기법이 사용되었습니다. <br>
+            (이는 후에 추가적인 유지/보수를 통해 다른 모델로 바꾸거나 확장이 가능합니다.) <br>
+            분석 결과는 다음과 같이 3가지로 분류됩니다. <br><br>
+            <b style="color:mediumblue;">과잉</b>: 오늘 발주하신 물건 수량이 평소보다 많아 Share가 필요한 경우 <br>
+            <b style="color:gold;"> 적정 </b> : 오늘 발주하신 물건 수량이 적절하게 발주된 경우 <br>
+            <b style="color:red;">부족 </b>: 오늘 발주하신 물건 수량이 평소보다 적어 Request가 필요한 경우 <br>
+        </p>
+    </div>
+</div>
+
+<style>
+    .mlinfo {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        min-height: 100px;
+        align-items: flex-end;
+        padding-right: 5vw;
+    }
+
+    .mlinfo>i {
+        font-size: 24px;
+        /* color:rgb(84,88,90); */
+        color: rgb(84, 88, 90);
+    }
+
+    .mlinfo>i:hover {
+        color: silver;
+        cursor: pointer;
+    }
+
+
+    .popup .overlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        display: none;
+    }
+
+    .popup .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: #fff;
+        width: 670px;
+        height: 300px;
+        z-index: 2;
+        /* text-align: center; */
+        padding: 20px;
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+    }
+
+    .popup .close-btn {
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        background: #222;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    .popup.active .overlay {
+        display: block;
+    }
+
+    .popup.active .content {
+        transition: all 300ms ease-in-out;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    @media screen and (max-width: 768px) {
+        .info {
+            left: 70px;
+        }
+
+        .popup .content {
+            font-size: 12px;
+            width: 350px;
+            height: 315px;
+        }
+    }
+</style>
+
+<script>
+    function popup() {
+        document.getElementById('popup-1').classList.toggle("active");
+    }
+</script>
 
 {% endblock content %}

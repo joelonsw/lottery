@@ -182,17 +182,21 @@
         min-height: calc(100vh - 68px - 400px);
     }
 
+    .history_sr{
+        padding: 10px 0 10px 0;
+    }
+
     .history_sr div{
         padding-right: 15px;
         padding-left:15px;
     }
 
     .history_tab div *{
-        font-size:12px;
+        font-size:10px;
     }
 
     .tab_content div *{
-        font-size:12px;
+        font-size:10px;
     }
 
     .tab_content{

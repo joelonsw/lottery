@@ -26,7 +26,7 @@ SECRET_KEY = '+#_at%9^!y@cp7b95)t+=y@p1-v34wy3$dn^$1dfa+ye$08f*2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '.ap-northeast-2.compute.amazonaws.com', '.lottery-unist.ml',]
 
 
 # Application definition
