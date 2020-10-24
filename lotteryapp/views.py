@@ -81,11 +81,13 @@ def request(request):
 # url에 object의 pk_num을 담아 detail 보여주기
 @login_required
 def share_detail(request, detail_id):
+    update_outdate()
     detail = ItemShare.objects.get(pk=detail_id)
     return render(request, "share_detail.html", {"detail" : detail})
 
 @login_required
 def request_detail(request, detail_id):
+    update_outdate()
     detail = ItemRequest.objects.get(pk=detail_id)
     return render(request, "request_detail.html", {"detail" : detail})
 
@@ -93,6 +95,7 @@ def request_detail(request, detail_id):
 def share_accept(request, detail_id):
     #객채의 id를 인자로 넘겨받아야 할 것.
     #primaryKey로 해당 객체 id로 조회해서 보여주고 Form태그로 요청이 들어오면 DB수정해서 보여줄 것
+    update_outdate()
     detail = ItemShare.objects.get(pk=detail_id)
     if request.POST:
         #DB update
@@ -129,6 +132,7 @@ def share_accept(request, detail_id):
 def request_accept(request, detail_id):
     #객채의 id를 인자로 넘겨받아야 할 것.
     #primaryKey로 해당 객체 id로 조회해서 보여주고 Form태그로 요청이 들어오면 DB수정해서 보여줄 것
+    update_outdate()
     detail = ItemRequest.objects.get(pk=detail_id)
     if request.POST:
         #DB update
@@ -171,6 +175,7 @@ def write(request):
 # ItemShare와 ItemRequest가 foreign key를 Profile로 받기 때문에 pk로 서치해서 사용함.
 @login_required
 def write_share(request):
+    update_outdate()
     if request.POST:
         current_user = Profile.objects.get(user=request.user.pk)
         share_post = ItemShare(location=request.POST['location'],
@@ -188,6 +193,7 @@ def write_share(request):
 
 @login_required
 def write_request(request):
+    update_outdate()
     if request.POST:
         current_user = Profile.objects.get(user=request.user.pk)
         request_post = ItemRequest(location=request.POST['location'],
