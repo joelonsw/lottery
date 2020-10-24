@@ -1,3 +1,11 @@
+#jijeom{
+    font-size:19px;
+}
+
+#jeomjang{
+    font-size:16px;
+}
+
 .user_info{
     /* border: 1px solid black; */
     /* background-color: lightgrey; */
@@ -157,6 +165,13 @@
 }
 
 @media screen and (max-width: 768px){
+    #jijeom{
+        font-size:15px;
+    }
+    
+    #jeomjang{
+        font-size:10px;
+    }
     .user_specific{
         width:100%;
         justify-content: center;

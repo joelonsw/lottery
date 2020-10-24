@@ -94,8 +94,8 @@
     <div class="user_dashboard">
         <div class="user_specific">
             <img src="{% static 'image/krispy_logo.png' %}" alt="">
-            <h2 style="margin-left:10px">{{user.profile.location}}</h2>
-            <h3 style="margin-left: 20px">{{user.profile.fullname}}님</h3>
+            <h2 id="jijeom" style="margin-left:10px; ">{{user.profile.location}}</h2>
+            <h3 id="jeomjang" style="margin-left: 20px; ">{{user.profile.fullname}}님</h3>
         </div>
         <div class="vertical_line"></div>
         <div class="user_status">
@@ -173,7 +173,7 @@
                 <a href="javascript:void(0);" onclick="baljoohist()">발주량 기록</a>
             </div>
             <div class="request" id="expect_font" style="font-weight: normal;">
-                <a href="javascript:void(0);" onclick="baljooexpect()">발주량 예상</a>
+                <a href="javascript:void(0);" onclick="baljooexpect()">오늘의 발주량 예상</a>
             </div>
         </div>
         <div class="history_sr_detail">
@@ -198,7 +198,7 @@
                 {% for ml, mlinfos in ml_returning.items %}
                 <div class="request_history">
                     <div class="request_complete">
-                        <p>{{ml}}</p>
+                        <p>{{ml}} {{mlinfos.tomorrow}}개</p>
                     </div>
                     <div class="request_item_num">
                         {% if mlinfos.status == "적정" %}
@@ -237,15 +237,15 @@
     <div class="overlay"></div>
     <div class="content">
         <div class="close-btn" onclick="popup()">&times;</div>
-        <h2>"발주량 예상" 메뉴는</h2>
+        <h2>"오늘의 발주량 예상" 메뉴는</h2>
         <p>
             점주님의 Share/Request 기록과 발주 기록을 토대로 데이터를 분석하고 예측합니다. <br>
             분석과 예측에는 Linear Regression을 이용한 간단한 머신러닝 기법이 사용되었습니다. <br>
             (이는 후에 추가적인 유지/보수를 통해 다른 모델로 바꾸거나 확장이 가능합니다.) <br>
             분석 결과는 다음과 같이 3가지로 분류됩니다. <br><br>
-            <b style="color:mediumblue;">과잉</b>: 오늘 발주하신 물건 수량이 평소보다 많아 Share가 필요한 경우 <br>
-            <b style="color:gold;"> 적정 </b> : 오늘 발주하신 물건 수량이 적절하게 발주된 경우 <br>
-            <b style="color:red;">부족 </b>: 오늘 발주하신 물건 수량이 평소보다 적어 Request가 필요한 경우 <br>
+            <b style="color:red;">과잉</b>: 오늘 발주하신 물건 수량이 평소보다 많아 Share가 필요한 경우 <br>
+            <b style="color:mediumblue;"> 적정 </b> : 오늘 발주하신 물건 수량이 적절하게 발주된 경우 <br>
+            <b style="color:gold;">부족 </b>: 오늘 발주하신 물건 수량이 평소보다 적어 Request가 필요한 경우 <br>
         </p>
     </div>
 </div>
