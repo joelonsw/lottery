@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm
-<<<<<<< HEAD
 from lotteryapp.models import *
 from lotteryapp.mlmodule import *
 from lotteryapp.utils import *
 import numpy as np
-=======
 from lotteryapp.utils import get_location_coordinate
 
 # SMTP 관련 인증
@@ -18,7 +16,6 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
 
->>>>>>> master
 
 # Create your views here.
 def home(request):

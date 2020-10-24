@@ -128,18 +128,12 @@ class ShareAccept(models.Model):
 
 """
     주차별 발주량에 사용할 model 입니다.
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     item_name  => 주문한 물건
     item_num   => 주문한 물건의 수량
     order_date => 주문한 날짜
     author     => My Page에서 보여주기 위한 작성자
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     따로 모델을 저장하는 페이지가 없으므로 admin에서 넣어주시면 됩니다.
 """
 class OrderItem(models.Model):

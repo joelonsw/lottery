@@ -57,7 +57,6 @@ def update_remain(num, target):
         target.save()
 
 
-<<<<<<< HEAD
 # 발주량과 Share/Request 내역을 정리합니다.
 # ML module에 들어가기 전에 필요합니다.
 # 현재 유저와 정리할 item 이름을 parameter로 받습니다.
@@ -92,7 +91,6 @@ def calibrate_RS_data(current_user, item):
 
     print(result)
     return np.array(result)
-=======
 # Google API를 이용해 주소를 파라미터로 받으면 위도/경도로 변환해주는 함수입니다.
 # requests 모듈이 추가적으로 필요합니다. (urllib는 python3 기준으로 자동 탑재)
 # (Google API가 네이버나 카카오에 비해 파싱을 더 잘 한다고 합니다.)
@@ -151,4 +149,3 @@ def sort_by_location(current_user, selection):
         share_sort      = sorted(share_return, key=lambda target: target[1])
         share_result    = [item[0] for item in share_sort]
         return share_result
->>>>>>> master
