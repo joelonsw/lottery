@@ -1,6 +1,6 @@
 # LOTTERY([바로가기](http://www.lottery-unist.ml) sample id: kangnam, pw: kangnam123)
 ## UNIST-멋사 2020 해커톤
-### 발표자료(바로가기)
+### 발표자료([바로가기](https://drive.google.com/file/d/1nPQk4PFLsHehehzDMyoArBbIeuJN4Qhf/view))
 -----
 ## About us
 ### 팀원
