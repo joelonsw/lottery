@@ -125,7 +125,7 @@
         <h3>{{detail.location}} - {{detail.item}}</h3>
     </div>
     <div class="form">
-        <form action="{% url 'request_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(false)"
+        <form action="{% url 'request_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click2(false)"
             id="submit_form">
             {% csrf_token %}
             <div class="input_field">
@@ -159,7 +159,7 @@
             </div>
             {% else %}
             <div class="input_field">
-                <input type="submit" value="제가 가져갈게요" class="btn">
+                <input type="submit" value="제가 드릴게요" class="btn">
             </div>
             {% endif %}
         </form>

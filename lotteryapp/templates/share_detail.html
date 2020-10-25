@@ -128,7 +128,7 @@
         <h3>{{detail.location}} - {{detail.item}}</h3>
     </div>
     <div class="form">
-        <form action="{% url 'share_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click(true)"
+        <form action="{% url 'share_accept' detail.pk_num %}" method="POST" onsubmit="return submit_click2(true)"
             id="submit_form">
             {% csrf_token %}
             <div class="input_field">
