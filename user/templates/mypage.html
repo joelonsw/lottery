@@ -137,7 +137,7 @@
                 {% for share in share_list %}
                 <div class="share_history">
                     <div class="share_complete">
-                        <p>{% if share.outdate == False %} 미완료 {% else %} 완료 {% endif %}</p>
+                        <p>{% if share.remain == 0 %} 완료 {% else %} 미완료 {% endif %}</p>
                     </div>
                     <div class="share_date">
                         <p>{{share.dates}}</p>
@@ -153,7 +153,7 @@
                 {% for request in request_list %}
                 <div class="request_history">
                     <div class="request_complete">
-                        <p>{% if request.outdate == False %} 미완료 {% else %} 완료 {% endif %}</p>
+                        <p>{% if share.remain == 0 %} 완료 {% else %} 미완료 {% endif %}</p>
                     </div>
                     <div class="request_date">
                         <p>{{request.dates}}</p>
