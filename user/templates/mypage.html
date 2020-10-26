@@ -153,7 +153,7 @@
                 {% for request in request_list %}
                 <div class="request_history">
                     <div class="request_complete">
-                        <p>{% if share.remain == 0 %} 완료 {% else %} 미완료 {% endif %}</p>
+                        <p>{% if request.remain == 0 %} 완료 {% else %} 미완료 {% endif %}</p>
                     </div>
                     <div class="request_date">
                         <p>{{request.dates}}</p>
