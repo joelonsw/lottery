@@ -1,5 +1,5 @@
 # LOTTERY([바로가기](http://lottery.pythonanywhere.com/) sample id: kangnam, pw: kangnam123) 
-http://www.lottery-unist.ml 에서 http://lottery.pythonanywhere.com/ 로 이전했습니다!
+http://www.lottery-unist.ml 에서 http://lottery.pythonanywhere.com 로 이전했습니다!
 ## UNIST-멋사 2020 해커톤
 ### 발표자료([바로가기](https://drive.google.com/file/d/1nPQk4PFLsHehehzDMyoArBbIeuJN4Qhf/view))
 -----
